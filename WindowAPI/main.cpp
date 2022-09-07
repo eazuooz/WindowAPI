@@ -2,7 +2,8 @@
 //
 
 #include "framework.h"
-#include "WindowAPI.h"
+#include "Client.h"
+#include "Shape.h"
 
 #define MAX_LOADSTRING 100
 
@@ -22,25 +23,34 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
+    // HINSTANCE : 프로세스 ID
+    // HWND : 윈도우 ID
+    
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: 여기에 코드를 입력합니다.
 
-    // 전역 문자열을 초기화합니다.
+    // StringTable 문자열을 전역배열에 불러오기
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_WINDOWAPI, szWindowClass, MAX_LOADSTRING);
+    
+    // 윈도우 기본세팅 추가
     MyRegisterClass(hInstance);
 
-    // 애플리케이션 초기화를 수행합니다:
+    // 등록한 윈도우 세팅으로 윈도우 생성
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
     }
 
+    // 단축키 불러오기
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWAPI));
 
     MSG msg;
+
+    // GetMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
+    //              (msg.message == WM_QUIT) return false;
+    //              WM_QUIT 이외의 메세지가 발생 한 경우는 return true; 
 
     // 기본 메시지 루프입니다:
     while (GetMessage(&msg, nullptr, 0, 0))
@@ -105,6 +115,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+   //윈도우 포지션 및 크기 설정
+   SetWindowPos(hWnd, nullptr, 0, 0, 1920, 1080, 0);
+
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -147,6 +160,47 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            //화면 전체에 색상 부여
+            HBRUSH hClearBrush = CreateSolidBrush(RGB(100, 100, 100));
+            HBRUSH hOriginBrush = (HBRUSH)SelectObject(hdc, hClearBrush);
+
+            Rectangle(hdc, -1, -1, 1921, 1081);
+
+            (HBRUSH)SelectObject(hdc, hOriginBrush);
+            DeleteObject(hClearBrush);
+
+            // Pen, Brush 생성
+            HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+            HBRUSH hBrush = CreateSolidBrush(RGB(11, 178, 89));
+
+            // DC 에 Pen, Brush 를 주고 원래 것을 받아둔다
+            HPEN hOriginPen = (HPEN)SelectObject(hdc, hRedPen);
+            hOriginBrush = (HBRUSH)SelectObject(hdc, hBrush);
+
+            Shape player;
+            player.SetPos(1080 / 2, 1920 / 2);
+            player.SetSize(100, 100);
+
+            // Player 그리기            
+            Rectangle(hdc , player.GetPos().x - player.GetSize().x / 2
+                          , player.GetPos().y - player.GetSize().y / 2
+                          , player.GetPos().x + player.GetSize().x / 2
+                          , player.GetPos().y + player.GetSize().y / 2);
+
+            Ellipse(hdc , player.GetPos().x - player.GetSize().x / 2
+                        , player.GetPos().y - player.GetSize().y / 2
+                        , player.GetPos().x + player.GetSize().x / 2
+                        , player.GetPos().y + player.GetSize().y / 2);
+
+            // 원래 pen, brush 를 돌려준다.
+            SelectObject(hdc, hOriginPen);
+            SelectObject(hdc, hOriginBrush);
+
+            // 사용이 끝난 Pen, Brush 를 지운다.
+            DeleteObject(hRedPen);
+            DeleteObject(hBrush);
+
             EndPaint(hWnd, &ps);
         }
         break;
