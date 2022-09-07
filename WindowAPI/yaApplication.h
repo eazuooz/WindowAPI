@@ -3,7 +3,7 @@
 // 우리의 메인 프로그램
 // Singleton patten
 
-namespace yam
+namespace ya
 {
 	class Application
 	{
