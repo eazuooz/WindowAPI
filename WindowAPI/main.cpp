@@ -7,6 +7,13 @@
 
 #define MAX_LOADSTRING 100
 
+struct WindowImplData
+{
+    HWND hWnd;
+    UINT height;
+    UINT width;
+};
+WindowImplData gWindowImplData;
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -17,6 +24,8 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+Shape player;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -42,25 +51,51 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         return FALSE;
     }
-
+    
     // 단축키 불러오기
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWAPI));
 
     MSG msg;
 
+    //Timer
+    SetTimer(gWindowImplData.hWnd, 0, 100, nullptr);
+
     // GetMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
     //              (msg.message == WM_QUIT) return false;
     //              WM_QUIT 이외의 메세지가 발생 한 경우는 return true; 
 
+    // PeekMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
+    //               PM_REMOVE -> 발생한 메세지를 가져올 때 메세지큐에서 제거 (GetMessage 랑 동일하게 하기 위해서...)
+    //               메세지큐에 메세지 유/무 에 상관없이 함수가 리턴됨
+    //               리턴값이 true 인 경우 메세지가 있었다. 리턴값이 false 인 경우 메세지가 큐에 없었다.
+
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    //while (GetMessage(&msg, nullptr, 0, 0))
+    while(true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (WM_QUIT == msg.message)
+                break;
+            
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        } 
+        else
+        {
+            // 게임 실행
         }
     }
+
+    if (msg.message == WM_QUIT)
+    {
+        //
+    }
+
+    KillTimer(gWindowImplData.hWnd, 0);
 
     return (int) msg.wParam;
 }
@@ -121,6 +156,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   gWindowImplData.hWnd = hWnd;
+   gWindowImplData.width = 1920;
+   gWindowImplData.height = 1080;
+
    return TRUE;
 }
 
@@ -138,6 +177,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
+    case WM_CREATE:
+        {
+            player.SetPos(1080 / 2, 1920 / 2);
+            player.SetSize(100, 100);
+            DefWindowProc(hWnd, message, wParam, lParam);
+        }
+        break;
+
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -155,6 +202,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+
+    case WM_KEYDOWN:
+        {
+            POINT ptPos = player.GetPos();
+
+            switch (wParam)
+            {
+            case 'W':
+                ptPos.y -= 10;
+                break;
+            case 'S':
+                ptPos.y += 10;
+                break;
+            case 'A':
+                ptPos.x -= 10;
+                break;
+            case 'D':
+                ptPos.x += 10;
+                break;
+            }
+
+            player.SetPos(ptPos.y, ptPos.x);
+
+            // 무효화영역 발생시키기(WM_PAINT 메세지)
+            InvalidateRect(hWnd, nullptr, false);
+        }
+        break;
+
+    case WM_TIMER:
+        {
+            int a = 0;
+        }
+        break;
+
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
@@ -178,9 +259,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HPEN hOriginPen = (HPEN)SelectObject(hdc, hRedPen);
             hOriginBrush = (HBRUSH)SelectObject(hdc, hBrush);
 
-            Shape player;
-            player.SetPos(1080 / 2, 1920 / 2);
-            player.SetSize(100, 100);
 
             // Player 그리기            
             Rectangle(hdc , player.GetPos().x - player.GetSize().x / 2
