@@ -3,17 +3,10 @@
 
 #include "framework.h"
 #include "Client.h"
-#include "Shape.h"
+#include "yaApplication.h"
+
 
 #define MAX_LOADSTRING 100
-
-struct WindowImplData
-{
-    HWND hWnd;
-    UINT height;
-    UINT width;
-};
-WindowImplData gWindowImplData;
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
@@ -24,8 +17,6 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
-
-Shape player;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -52,14 +43,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return FALSE;
     }
     
+    
+
     // 단축키 불러오기
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWAPI));
 
     MSG msg;
-
-    //Timer
-    SetTimer(gWindowImplData.hWnd, 0, 100, nullptr);
-
     // GetMessage : 프로세스에 발생한 메시지를 메세지큐에서 꺼내옴
     //              (msg.message == WM_QUIT) return false;
     //              WM_QUIT 이외의 메세지가 발생 한 경우는 return true; 
@@ -87,6 +76,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             // 게임 실행
+            ya::Application::GetInstance().Tick();
         }
     }
 
@@ -94,8 +84,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     {
         //
     }
-
-    KillTimer(gWindowImplData.hWnd, 0);
 
     return (int) msg.wParam;
 }
@@ -156,9 +144,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   gWindowImplData.hWnd = hWnd;
-   gWindowImplData.width = 1920;
-   gWindowImplData.height = 1080;
+   WindowImplData windowData;
+   windowData.hWnd = hWnd;
+   windowData.height = 1080;
+   windowData.width = 1920;
+
+   ya::Application::GetInstance().Initialize(windowData);
 
    return TRUE;
 }
@@ -179,8 +170,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         {
-            player.SetPos(1080 / 2, 1920 / 2);
-            player.SetSize(100, 100);
             DefWindowProc(hWnd, message, wParam, lParam);
         }
         break;
@@ -203,81 +192,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
 
-    case WM_KEYDOWN:
-        {
-            POINT ptPos = player.GetPos();
-
-            switch (wParam)
-            {
-            case 'W':
-                ptPos.y -= 10;
-                break;
-            case 'S':
-                ptPos.y += 10;
-                break;
-            case 'A':
-                ptPos.x -= 10;
-                break;
-            case 'D':
-                ptPos.x += 10;
-                break;
-            }
-
-            player.SetPos(ptPos.y, ptPos.x);
-
-            // 무효화영역 발생시키기(WM_PAINT 메세지)
-            InvalidateRect(hWnd, nullptr, false);
-        }
-        break;
-
-    case WM_TIMER:
-        {
-            int a = 0;
-        }
-        break;
-
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-
-            //화면 전체에 색상 부여
-            HBRUSH hClearBrush = CreateSolidBrush(RGB(100, 100, 100));
-            HBRUSH hOriginBrush = (HBRUSH)SelectObject(hdc, hClearBrush);
-
-            Rectangle(hdc, -1, -1, 1921, 1081);
-
-            (HBRUSH)SelectObject(hdc, hOriginBrush);
-            DeleteObject(hClearBrush);
-
-            // Pen, Brush 생성
-            HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-            HBRUSH hBrush = CreateSolidBrush(RGB(11, 178, 89));
-
-            // DC 에 Pen, Brush 를 주고 원래 것을 받아둔다
-            HPEN hOriginPen = (HPEN)SelectObject(hdc, hRedPen);
-            hOriginBrush = (HBRUSH)SelectObject(hdc, hBrush);
-
-
-            // Player 그리기            
-            Rectangle(hdc , player.GetPos().x - player.GetSize().x / 2
-                          , player.GetPos().y - player.GetSize().y / 2
-                          , player.GetPos().x + player.GetSize().x / 2
-                          , player.GetPos().y + player.GetSize().y / 2);
-
-            Ellipse(hdc , player.GetPos().x - player.GetSize().x / 2
-                        , player.GetPos().y - player.GetSize().y / 2
-                        , player.GetPos().x + player.GetSize().x / 2
-                        , player.GetPos().y + player.GetSize().y / 2);
-
-            // 원래 pen, brush 를 돌려준다.
-            SelectObject(hdc, hOriginPen);
-            SelectObject(hdc, hOriginBrush);
-
-            // 사용이 끝난 Pen, Brush 를 지운다.
-            DeleteObject(hRedPen);
-            DeleteObject(hBrush);
 
             EndPaint(hWnd, &ps);
         }
