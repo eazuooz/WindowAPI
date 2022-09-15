@@ -1,5 +1,4 @@
 #pragma once
-
 #include "framework.h"
 
 #include <string>
@@ -7,12 +6,19 @@
 #include <list>
 #include <map>
 
-using std::vector;
-using std::list;
-using std::map;
-using std::make_pair;
-using std::string;
-using std::wstring;
+#include "yaMath.h"
+#include "def.h"
+
+
+
+
+//using std::vector;
+//using std::list;
+//using std::map;
+//using std::make_pair;
+//using std::string;
+//using std::wstring;
+using Pos = POINT;
 
 struct WindowImplData
 {
@@ -30,10 +36,6 @@ struct WindowImplData
     }
 };
 
-struct Vector2
-{
-    float y;
-    float x;
-};
 
-using Pos = POINT;
+
+

@@ -41,6 +41,9 @@
     <Filter Include="Common">
       <UniqueIdentifier>{93b74044-b0d1-44eb-b055-826a38d77838}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{d634d47d-626a-49fa-806b-c95baa2363e8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="yaApplication.h">
@@ -67,6 +70,25 @@
     <ClInclude Include="yaEntity.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="yaMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTime.h">
+      <Filter>Manager\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSceneManager.h">
+      <Filter>Manager\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="yaScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLogoScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -81,6 +103,19 @@
     <ClCompile Include="yaEntity.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="yaTime.cpp">
+      <Filter>Manager\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSceneManager.cpp">
+      <Filter>Manager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLogoScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

@@ -1,4 +1,6 @@
 #include "yaApplication.h"
+#include "yaTime.h"
+#include "yaSceneManager.h"
 
 namespace ya
 {
@@ -19,39 +21,20 @@ namespace ya
 	{
 		mWindowData.hWnd = data.hWnd;
 		mWindowData.hdc = GetDC(mWindowData.hWnd);
+
+		// 초기화
+		SceneManager::GetInstance().Initialize();
+		Time::GetInstance().Initialize();
 	}
 
 	void Application::Tick()
 	{
 		// 업데이트
-		static float x = 100, y = 100;
-		static float sizex = 100, sizey = 100;
-
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		{
-			x -= 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		{
-			x += 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-		{
-			y -= 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		{
-			y += 0.01f;
-		}
+		Time::GetInstance().Tick();
+		SceneManager::GetInstance().Tick();
 
 		// 렌더링
-		Rectangle(mWindowData.hdc
-			, (int)(x - sizex / 2.f)
-			, (int)(y - sizey / 2.f)
-			, (int)(x + sizex / 2.f)
-			, (int)(y + sizey / 2.f));
+		SceneManager::GetInstance().Render(mWindowData.hdc);
+		Time::GetInstance().Render(mWindowData.hdc);
 	}
 }
