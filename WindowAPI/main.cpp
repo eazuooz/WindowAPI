@@ -144,7 +144,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   WindowImplData windowData;
+   WindowData windowData;
    windowData.hWnd = hWnd;
    windowData.height = 1080;
    windowData.width = 1920;

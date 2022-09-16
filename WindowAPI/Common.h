@@ -20,7 +20,7 @@
 //using std::wstring;
 using Pos = POINT;
 
-struct WindowImplData
+struct WindowData
 {
     HWND hWnd;
     HDC  hdc;

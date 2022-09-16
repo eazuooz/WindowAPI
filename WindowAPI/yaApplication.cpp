@@ -1,6 +1,7 @@
 #include "yaApplication.h"
 #include "yaTime.h"
 #include "yaSceneManager.h"
+#include "yaInputManager.h"
 
 namespace ya
 {
@@ -17,7 +18,7 @@ namespace ya
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
 	}
 	
-	void Application::Initialize(WindowImplData data)
+	void Application::Initialize(WindowData data)
 	{
 		mWindowData.hWnd = data.hWnd;
 		mWindowData.hdc = GetDC(mWindowData.hWnd);
@@ -25,13 +26,17 @@ namespace ya
 		// 초기화
 		SceneManager::GetInstance().Initialize();
 		Time::GetInstance().Initialize();
+		InputManager::GetInstance().Initialize();
 	}
 
 	void Application::Tick()
 	{
 		// 업데이트
 		Time::GetInstance().Tick();
+		InputManager::GetInstance().Tick();
 		SceneManager::GetInstance().Tick();
+
+
 
 		// 렌더링
 		SceneManager::GetInstance().Render(mWindowData.hdc);

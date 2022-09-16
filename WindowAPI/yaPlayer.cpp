@@ -1,4 +1,6 @@
 #include "yaPlayer.h"
+#include "yaTime.h"
+#include "yaInputManager.h"
 
 namespace ya
 {
@@ -16,28 +18,28 @@ namespace ya
 		// 키입력에 따른 이동
 		Vector2 vPos = GetPos();
 
-
 		// 시간 동기화
-		if (GetAsyncKeyState('W') & 0x8000)
+		if (KEY_UP(KEY_CODE::W))
 		{
-			mSpeed;
-			vPos.y -= 0.01f;
+			//vPos.y -= m_fSpeed * DT;
+			vPos.y -= 50.f;
 		}
 
 		if (GetAsyncKeyState('S') & 0x8000)
 		{
-			vPos.y += 0.01f;
+			vPos.y += mSpeed * Time::DeltaTime();
 		}
 
 		if (GetAsyncKeyState('A') & 0x8000)
 		{
-			vPos.x -= 0.01f;
+			vPos.x -= mSpeed * Time::DeltaTime();
 		}
 
 		if (GetAsyncKeyState('D') & 0x8000)
 		{
-			vPos.x += 0.01f;
+			vPos.x += mSpeed * Time::DeltaTime();
 		}
+
 
 
 

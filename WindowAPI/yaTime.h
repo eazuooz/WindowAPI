@@ -8,6 +8,8 @@ namespace ya
 		SINGLE(Time)
 
 	public:
+		static float DeltaTime();
+
 		void Initialize();
 		void Tick();
 		void Render(HDC hdc);
@@ -18,6 +20,7 @@ namespace ya
 		LARGE_INTEGER	mCurFrequency;
 
 		float			mDeltaTime;
+		float			mOneSecond;
 	};
 }
 

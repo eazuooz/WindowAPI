@@ -9,12 +9,14 @@ namespace ya
 	{
 		SINGLE(Application)
 	public:
-		void Initialize(WindowImplData data);
+		void Initialize(WindowData data);
 		void Tick();
+
+		WindowData& GetWindowData() { return mWindowData; }
 
 	private:
 		static int mIsStatic;
 		
-		WindowImplData mWindowData;
+		WindowData mWindowData;
 	};
 }

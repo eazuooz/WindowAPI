@@ -137,6 +137,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="yaEntity.h" />
+    <ClInclude Include="yaInputManager.h" />
     <ClInclude Include="yaLogoScene.h" />
     <ClInclude Include="yaMath.h" />
     <ClInclude Include="yaObject.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="yaApplication.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="yaEntity.cpp" />
+    <ClCompile Include="yaInputManager.cpp" />
     <ClCompile Include="yaLogoScene.cpp" />
     <ClCompile Include="yaObject.cpp" />
     <ClCompile Include="yaPlayer.cpp" />

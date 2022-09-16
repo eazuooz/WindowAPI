@@ -88,7 +88,12 @@
     <ClInclude Include="yaLogoScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="yaPlayer.h" />
+    <ClInclude Include="yaPlayer.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInputManager.h">
+      <Filter>Manager\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -115,7 +120,12 @@
     <ClCompile Include="yaLogoScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="yaPlayer.cpp" />
+    <ClCompile Include="yaPlayer.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInputManager.cpp">
+      <Filter>Manager\InputManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

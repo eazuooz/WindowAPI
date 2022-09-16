@@ -1,5 +1,5 @@
 ﻿#include "yaTime.h"
-
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -10,6 +10,7 @@ namespace ya
         , mPrevFrequency{}
         , mCurFrequency{}
         , mDeltaTime(0.0f)
+        , mOneSecond(0.0f)
     {
 
     }
@@ -17,6 +18,11 @@ namespace ya
     Time::~Time()
     {
 
+    }
+
+    float Time::DeltaTime()
+    {
+        return mInstance->mDeltaTime;
     }
 
     void Time::Initialize()
@@ -41,12 +47,27 @@ namespace ya
 
     void Time::Render(HDC hdc)
     {
-        wchar_t szFloat[50] = {};
-        float fps = 1.f / mDeltaTime;
+        static int iCount = 0;
+        ++iCount;
 
-        swprintf_s(szFloat, 50, L"DeltaTime : %f", fps);
-        int strLen = wcsnlen_s(szFloat, 50);
 
-        TextOut(hdc, 10, 10, szFloat, strLen);
+        // 1 초에 한번
+        mOneSecond += mDeltaTime;
+        if (1.0f < mOneSecond)
+        {
+            HWND hWnd = Application::GetInstance().GetWindowData().hWnd;
+
+            wchar_t szFloat[50] = {};
+            float FPS = 1.f / mDeltaTime;
+            swprintf_s(szFloat, 50, L"DeltaTime : %d", iCount);
+            int iLen = wcsnlen_s(szFloat, 50);
+            //TextOut(_dc, 10, 10, szFloat, iLen);
+
+            SetWindowText(hWnd, szFloat);
+
+            // 누적시간, 카운트 초기화
+            mOneSecond = 0.f;
+            iCount = 0;
+        }
     }
 }
