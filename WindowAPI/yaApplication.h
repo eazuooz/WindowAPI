@@ -9,7 +9,8 @@ namespace ya
 	{
 		SINGLE(Application)
 	public:
-		void Initialize(WindowData data);
+		bool Initialize(WindowData& data);
+		bool InitializeWindow(WindowData& data);
 		void Tick();
 
 		WindowData& GetWindowData() { return mWindowData; }

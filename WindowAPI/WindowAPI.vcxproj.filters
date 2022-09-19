@@ -94,6 +94,7 @@
     <ClInclude Include="yaInputManager.h">
       <Filter>Manager\InputManager</Filter>
     </ClInclude>
+    <ClInclude Include="yaMissile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -126,6 +127,7 @@
     <ClCompile Include="yaInputManager.cpp">
       <Filter>Manager\InputManager</Filter>
     </ClCompile>
+    <ClCompile Include="yaMissile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

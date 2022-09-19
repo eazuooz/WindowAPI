@@ -24,6 +24,11 @@ struct WindowData
 {
     HWND hWnd;
     HDC  hdc;
+
+    HBITMAP backTexture;
+    HDC backBuffer;
+
+
     UINT height;
     UINT width;
 

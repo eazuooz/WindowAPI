@@ -13,5 +13,6 @@ namespace ya
 
     private:
         float mSpeed;
+        float mShotTime;
     };
 }

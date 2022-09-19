@@ -139,15 +139,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    }
 
    //윈도우 포지션 및 크기 설정
-   SetWindowPos(hWnd, nullptr, 0, 0, 1920, 1080, 0);
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-
    WindowData windowData;
    windowData.hWnd = hWnd;
    windowData.height = 1080;
    windowData.width = 1920;
+
+   SetWindowPos(hWnd, nullptr, 0, 0, windowData.width, windowData.height, 0);
+   ShowWindow(hWnd, nCmdShow);
+   UpdateWindow(hWnd);
 
    ya::Application::GetInstance().Initialize(windowData);
 

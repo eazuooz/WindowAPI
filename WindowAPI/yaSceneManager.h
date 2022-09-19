@@ -12,6 +12,8 @@ namespace ya
 		void Tick();
 		void Render(HDC hdc);
 
+		Scene* GetPlayScene() { return mPlayScene; }
+
 	private:
 		Scene* mScenes[SCENE_TYPE::END];
 		Scene* mPlayScene;
