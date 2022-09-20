@@ -84,7 +84,9 @@ namespace ya
 
 		
 		// Clear
+		HBRUSH hPrevBrush = (HBRUSH)SelectObject(mWindowData.backBuffer, mBrushes[(UINT)BRUSH_COLOR::GRAY]);
 		Rectangle(mWindowData.backBuffer, -1, -1, mWindowData.width + 1, mWindowData.height + 1);
+		SelectObject(mWindowData.backBuffer, hPrevBrush);
 
 		// ·»´õ¸µ
 		SceneManager::GetInstance().Render(mWindowData.backBuffer);
