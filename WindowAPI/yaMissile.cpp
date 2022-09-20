@@ -1,6 +1,6 @@
 #include "yaMissile.h"
 #include "yaTime.h"
-
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -28,6 +28,9 @@ namespace ya
 	{
 		Vector2 vPos = GetPos();
 		Vector2 vScale = GetScale();
+
+		Brush b(_dc, Application::GetInstance().GetBrush(BRUSH_COLOR::GRAY));
+		Pen p(_dc, Application::GetInstance().GetPen(PEN_COLOR::RED));
 
 		Ellipse(_dc
 			, (int)vPos.x - vScale.x / 2.f

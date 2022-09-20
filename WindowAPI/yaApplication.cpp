@@ -16,12 +16,23 @@ namespace ya
 	Application::~Application()
 	{
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
+		DeleteDC(mWindowData.backBuffer);
+		DeleteObject(mWindowData.backTexture);
+
+		// 펜 삭제요청
+		for (UINT i = 0; i < (UINT)PEN_COLOR::END; ++i)
+		{
+			DeleteObject(mPens[i]);
+		}
 	}
 	
 	bool Application::Initialize(WindowData& data)
 	{
 		if (!InitializeWindow(data))
 			return false;
+
+		// 기본 펜 및 브러쉬 생성
+		createDefaultGDIObject();
 
 		// 초기화
 		SceneManager::GetInstance().Initialize();
@@ -82,5 +93,17 @@ namespace ya
 		// BitBlt 함수는 DC 간에 그림을 복사하는 함수입니다. 
 		BitBlt(mWindowData.hdc, 0, 0, mWindowData.width, mWindowData.height
 			, mWindowData.backBuffer, 0, 0, SRCCOPY);
+	}
+	void Application::createDefaultGDIObject()
+	{
+		// 자주 쓸 색상의 펜 생성
+		mPens[(UINT)PEN_COLOR::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+		mPens[(UINT)PEN_COLOR::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+		mPens[(UINT)PEN_COLOR::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+
+		// 자주 쓸 Brush 생성
+		mBrushes[(UINT)BRUSH_COLOR::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+		mBrushes[(UINT)BRUSH_COLOR::BLACK] = (HBRUSH)GetStockObject(BLACK_BRUSH);
+		mBrushes[(UINT)BRUSH_COLOR::GRAY] = (HBRUSH)GetStockObject(GRAY_BRUSH);
 	}
 }

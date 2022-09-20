@@ -9,38 +9,74 @@
 #include "yaMath.h"
 #include "def.h"
 
-
-
-
 //using std::vector;
 //using std::list;
 //using std::map;
 //using std::make_pair;
 //using std::string;
 //using std::wstring;
-using Pos = POINT;
 
-struct WindowData
+namespace ya
 {
-    HWND hWnd;
-    HDC  hdc;
+	using Pos = POINT;
 
-    HBITMAP backTexture;
-    HDC backBuffer;
+	struct WindowData
+	{
+		HWND hWnd;
+		HDC  hdc;
+		HBITMAP backTexture;
+		HDC backBuffer;
+		UINT height;
+		UINT width;
 
+		void Clear()
+		{
+			hWnd = NULL;
+			hdc = NULL;
+			backTexture = NULL;
+			backBuffer = NULL;
+			height = 0;
+			width = 0;
+		}
+	};
 
-    UINT height;
-    UINT width;
+	struct Pen
+	{
+	private:
+		HDC		mHdc;
+		HPEN	mOldPen;
 
-    void Clear()
-    {
-        hWnd = NULL;
-        hdc = NULL;
-        height = 0;
-        width = 0;
-    }
-};
+	public:
+		Pen(HDC hdc, HPEN pen)
+			: mHdc(hdc)
+			, mOldPen(NULL)
+		{
+			mOldPen = (HPEN)SelectObject(mHdc, pen);
+		}
 
+		~Pen()
+		{
+			SelectObject(mHdc, mOldPen);
+		}
+	};
 
+	struct Brush
+	{
+	private:
+		HDC		mHdc;
+		HBRUSH	mOldBrush;
 
+	public:
+		Brush(HDC hdc, HBRUSH brush)
+			: mHdc(hdc)
+			, mOldBrush(NULL)
+		{
+			mOldBrush = (HBRUSH)SelectObject(mHdc, brush);
+		}
 
+		~Brush()
+		{
+			SelectObject(mHdc, mOldBrush);
+		}
+	};
+}

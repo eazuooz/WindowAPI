@@ -143,6 +143,8 @@
     <ClInclude Include="yaMissile.h" />
     <ClInclude Include="yaObject.h" />
     <ClInclude Include="yaPlayer.h" />
+    <ClInclude Include="yaResource.h" />
+    <ClInclude Include="yaResources.h" />
     <ClInclude Include="yaScene.h" />
     <ClInclude Include="yaSceneManager.h" />
     <ClInclude Include="yaTime.h" />
@@ -156,6 +158,8 @@
     <ClCompile Include="yaMissile.cpp" />
     <ClCompile Include="yaObject.cpp" />
     <ClCompile Include="yaPlayer.cpp" />
+    <ClCompile Include="yaResource.cpp" />
+    <ClCompile Include="yaResources.cpp" />
     <ClCompile Include="yaScene.cpp" />
     <ClCompile Include="yaSceneManager.cpp" />
     <ClCompile Include="yaTime.cpp" />

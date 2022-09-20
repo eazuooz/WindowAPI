@@ -14,9 +14,6 @@
     <Filter Include="Manager\SceneManager">
       <UniqueIdentifier>{c9689551-8668-4465-87a7-018dc4225340}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\ResourceManager">
-      <UniqueIdentifier>{a366b132-c2d1-40ee-aa4c-7306b746e3f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\PathManager">
       <UniqueIdentifier>{f3b8baef-cb70-42cc-9c22-d3a32f9f48b2}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,12 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{d634d47d-626a-49fa-806b-c95baa2363e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Resources">
+      <UniqueIdentifier>{a366b132-c2d1-40ee-aa4c-7306b746e3f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Resources\Resource">
+      <UniqueIdentifier>{79a7f202-1029-4e8a-a511-2abca6581eac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +97,15 @@
     <ClInclude Include="yaInputManager.h">
       <Filter>Manager\InputManager</Filter>
     </ClInclude>
-    <ClInclude Include="yaMissile.h" />
+    <ClInclude Include="yaResources.h">
+      <Filter>Manager\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResource.h">
+      <Filter>Manager\Resources\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMissile.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -127,7 +138,15 @@
     <ClCompile Include="yaInputManager.cpp">
       <Filter>Manager\InputManager</Filter>
     </ClCompile>
-    <ClCompile Include="yaMissile.cpp" />
+    <ClCompile Include="yaResources.cpp">
+      <Filter>Manager\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResource.cpp">
+      <Filter>Manager\Resources\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMissile.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

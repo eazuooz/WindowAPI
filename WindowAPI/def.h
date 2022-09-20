@@ -25,3 +25,19 @@ enum SCENE_TYPE
 	STAGE_01,
 	END,
 };
+
+enum class PEN_COLOR
+{
+	RED,
+	GREEN,
+	BLUE,
+	END,
+};
+
+enum class BRUSH_COLOR
+{
+	HOLLOW, // 투명 브러쉬
+	BLACK,  // 검은 브러쉬
+	GRAY,	// 회색 브러쉬
+	END,
+};

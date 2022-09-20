@@ -10,9 +10,13 @@ namespace ya
         ~Player();
 
         virtual void Tick() override;
+        virtual void Render(HDC hdc) override;
 
     private:
         float mSpeed;
         float mShotTime;
+
+        HBITMAP mImageBit;
+        HDC     mImageDC;
     };
 }

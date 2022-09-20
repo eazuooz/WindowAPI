@@ -139,7 +139,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    }
 
    //윈도우 포지션 및 크기 설정
-   WindowData windowData;
+   ya::WindowData windowData;
    windowData.hWnd = hWnd;
    windowData.height = 1080;
    windowData.width = 1920;
