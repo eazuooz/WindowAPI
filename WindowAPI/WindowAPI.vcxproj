@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="def.h" />
+    <ClInclude Include="yaImage.h" />
     <ClInclude Include="yaApplication.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="yaMath.h" />
     <ClInclude Include="yaMissile.h" />
     <ClInclude Include="yaObject.h" />
+    <ClInclude Include="yaPaths.h" />
     <ClInclude Include="yaPlayer.h" />
     <ClInclude Include="yaResource.h" />
     <ClInclude Include="yaResources.h" />
@@ -150,6 +152,7 @@
     <ClInclude Include="yaTime.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaImage.cpp" />
     <ClCompile Include="yaApplication.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="yaEntity.cpp" />
@@ -157,6 +160,7 @@
     <ClCompile Include="yaLogoScene.cpp" />
     <ClCompile Include="yaMissile.cpp" />
     <ClCompile Include="yaObject.cpp" />
+    <ClCompile Include="yaPaths.cpp" />
     <ClCompile Include="yaPlayer.cpp" />
     <ClCompile Include="yaResource.cpp" />
     <ClCompile Include="yaResources.cpp" />

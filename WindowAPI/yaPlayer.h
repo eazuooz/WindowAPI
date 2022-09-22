@@ -15,8 +15,5 @@ namespace ya
     private:
         float mSpeed;
         float mShotTime;
-
-        HBITMAP mImageBit;
-        HDC     mImageDC;
     };
 }

@@ -44,7 +44,7 @@
     <Filter Include="Manager\Resources">
       <UniqueIdentifier>{a366b132-c2d1-40ee-aa4c-7306b746e3f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\Resources\Resource">
+    <Filter Include="Resource">
       <UniqueIdentifier>{79a7f202-1029-4e8a-a511-2abca6581eac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -101,11 +101,15 @@
       <Filter>Manager\Resources</Filter>
     </ClInclude>
     <ClInclude Include="yaResource.h">
-      <Filter>Manager\Resources\Resource</Filter>
+      <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="yaMissile.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="yaImage.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPaths.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -142,11 +146,15 @@
       <Filter>Manager\Resources</Filter>
     </ClCompile>
     <ClCompile Include="yaResource.cpp">
-      <Filter>Manager\Resources\Resource</Filter>
+      <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="yaMissile.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="yaImage.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPaths.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">
