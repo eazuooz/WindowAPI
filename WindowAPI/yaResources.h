@@ -5,11 +5,11 @@ namespace ya
 {
 	class Resource;
 	class Image;
-
-	template <typename T>
+	//template <typename T>
 	class Resources
 	{
 	public:
+		template <typename T>
 		static T* Find(const std::wstring& key)
 		{
 			std::map<std::wstring, Resource*>::iterator iter = mResources.find(key);
@@ -23,10 +23,11 @@ namespace ya
 			return nullptr;
 		}
 
+		template <typename T>
 		static T* Load(const std::wstring& key, const std::wstring& path)
 		{
 			// 키값으로 탐색
-			T* resource = Find(key);
+			T* resource = Resources::Find<T>(key);
 			if (nullptr != resource)
 			{
 				// 해당키로 이미 로딩된게 있으면 해당 리소스를 반환
@@ -48,17 +49,7 @@ namespace ya
 			return dynamic_cast<T*>(resource);
 		}
 
-	private:
-		Resources() 
-		{
-		
-		}
-		~Resources()
-		{
-			Release();
-		}
-
-		void Release()
+		static void Release()
 		{
 			std::map<std::wstring, Resource*>::iterator iter = mResources.begin();
 			for (; iter != mResources.end(); ++iter)
@@ -66,11 +57,14 @@ namespace ya
 				delete(iter->second);
 			}
 		}
-		
+
+	private:
+		Resources() { }
+		~Resources() { }
+	
 	private:
 		static std::map<std::wstring, Resource*> mResources;
 	};
 
-	template <typename T> 
-	std::map<std::wstring, Resource*> Resources<T>::mResources;
+	
 }

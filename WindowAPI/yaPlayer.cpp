@@ -8,6 +8,9 @@
 #include "yaResources.h"
 #include "yaImage.h"
 
+#include "yaCollider.h"
+#include "yaAnimator.h"
+
 #include "yaMissile.h"
 
 namespace ya
@@ -16,7 +19,8 @@ namespace ya
 		: mSpeed(100.0f)
 		, mShotTime(0.0f)
 	{
-
+		AddComponent(new Collider());
+		AddComponent(new Animator());
 	}
 
 	Player::~Player()
@@ -72,12 +76,19 @@ namespace ya
 
 	void Player::Render(HDC hdc)
 	{
-		Image* pImage = Resources<Image>::Load(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
+		Image* pImage = Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
+		//Image* pImage = Resources::Find<Image>(L"PlayerImage");
 
 		if (nullptr == pImage)
 			return;
 
 		Vector2 vPos = GetPos();
-		BitBlt(hdc, (int)vPos.x - 61, (int)vPos.y - 62, 123, 124, pImage->GetDC(), 0, 0, SRCCOPY);
+		//BitBlt(hdc, (int)vPos.x - 61, (int)vPos.y - 62, 123, 124, pImage->GetDC(), 0, 0, SRCCOPY);
+		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
+			, (int)vPos.y - pImage->GetHeight() / 2
+			, pImage->GetWidth(), pImage->GetHeight()
+			, pImage->GetDC(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
+
+		Object::Render(hdc);
 	}
 }

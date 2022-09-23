@@ -15,7 +15,7 @@ namespace ya
 		Scene* GetPlayScene() { return mPlayScene; }
 
 	private:
-		Scene* mScenes[SCENE_TYPE::END];
+		Scene* mScenes[eSceneType::End];
 		Scene* mPlayScene;
 	};
 }

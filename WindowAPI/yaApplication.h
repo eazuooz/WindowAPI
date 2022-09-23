@@ -14,8 +14,8 @@ namespace ya
 		void Tick();
 
 		WindowData& GetWindowData() { return mWindowData; }
-		HPEN GetPen(PEN_COLOR color) { return mPens[(UINT)color]; }
-		HBRUSH GetBrush(BRUSH_COLOR brush) { return mBrushes[(UINT)brush]; }
+		HPEN GetPen(ePenColor color) { return mPens[(UINT)color]; }
+		HBRUSH GetBrush(eBrushColor brush) { return mBrushes[(UINT)brush]; }
 		
 	private:
 		void createDefaultGDIObject();
@@ -24,7 +24,7 @@ namespace ya
 		static int mIsStatic;
 		
 		WindowData mWindowData;
-		HPEN mPens[(UINT)PEN_COLOR::END];
-		HBRUSH mBrushes[(UINT)BRUSH_COLOR::END];
+		HPEN mPens[(UINT)ePenColor::End];
+		HBRUSH mBrushes[(UINT)eBrushColor::End];
 	};
 }

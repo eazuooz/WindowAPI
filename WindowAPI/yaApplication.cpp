@@ -2,6 +2,7 @@
 #include "yaTime.h"
 #include "yaSceneManager.h"
 #include "yaInputManager.h"
+#include "yaResources.h"
 
 namespace ya
 {
@@ -20,10 +21,12 @@ namespace ya
 		DeleteObject(mWindowData.backTexture);
 
 		// 펜 삭제요청
-		for (UINT i = 0; i < (UINT)PEN_COLOR::END; ++i)
+		for (UINT i = 0; i < (UINT)ePenColor::End; ++i)
 		{
 			DeleteObject(mPens[i]);
 		}
+
+		Resources::Release();
 	}
 	
 	bool Application::Initialize(WindowData& data)
@@ -84,7 +87,7 @@ namespace ya
 
 		
 		// Clear
-		HBRUSH hPrevBrush = (HBRUSH)SelectObject(mWindowData.backBuffer, mBrushes[(UINT)BRUSH_COLOR::GRAY]);
+		HBRUSH hPrevBrush = (HBRUSH)SelectObject(mWindowData.backBuffer, mBrushes[(UINT)eBrushColor::Gray]);
 		Rectangle(mWindowData.backBuffer, -1, -1, mWindowData.width + 1, mWindowData.height + 1);
 		SelectObject(mWindowData.backBuffer, hPrevBrush);
 
@@ -99,13 +102,13 @@ namespace ya
 	void Application::createDefaultGDIObject()
 	{
 		// 자주 쓸 색상의 펜 생성
-		mPens[(UINT)PEN_COLOR::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-		mPens[(UINT)PEN_COLOR::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
-		mPens[(UINT)PEN_COLOR::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+		mPens[(UINT)ePenColor::Red] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+		mPens[(UINT)ePenColor::Green] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+		mPens[(UINT)ePenColor::Blue] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 
 		// 자주 쓸 Brush 생성
-		mBrushes[(UINT)BRUSH_COLOR::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
-		mBrushes[(UINT)BRUSH_COLOR::BLACK] = (HBRUSH)GetStockObject(BLACK_BRUSH);
-		mBrushes[(UINT)BRUSH_COLOR::GRAY] = (HBRUSH)GetStockObject(GRAY_BRUSH);
+		mBrushes[(UINT)eBrushColor::Transparent] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+		mBrushes[(UINT)eBrushColor::Black] = (HBRUSH)GetStockObject(BLACK_BRUSH);
+		mBrushes[(UINT)eBrushColor::Gray] = (HBRUSH)GetStockObject(GRAY_BRUSH);
 	}
 }

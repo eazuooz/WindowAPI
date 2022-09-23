@@ -47,11 +47,11 @@
     <Filter Include="Resource">
       <UniqueIdentifier>{79a7f202-1029-4e8a-a511-2abca6581eac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{4d3f98d5-9de6-4a73-97de-cce34bb4c21b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="yaApplication.h">
-      <Filter>High Level Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>main</Filter>
     </ClInclude>
@@ -110,6 +110,18 @@
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="yaPaths.h" />
+    <ClInclude Include="yaComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="yaApplication.h">
+      <Filter>High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCollider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="yaAnimator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -155,6 +167,15 @@
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="yaPaths.cpp" />
+    <ClCompile Include="yaComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCollider.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="yaAnimator.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

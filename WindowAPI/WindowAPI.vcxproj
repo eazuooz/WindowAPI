@@ -129,8 +129,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="yaAnimator.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="def.h" />
+    <ClInclude Include="yaCollider.h" />
+    <ClInclude Include="yaComponent.h" />
     <ClInclude Include="yaImage.h" />
     <ClInclude Include="yaApplication.h" />
     <ClInclude Include="framework.h" />
@@ -152,6 +155,9 @@
     <ClInclude Include="yaTime.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="yaAnimator.cpp" />
+    <ClCompile Include="yaCollider.cpp" />
+    <ClCompile Include="yaComponent.cpp" />
     <ClCompile Include="yaImage.cpp" />
     <ClCompile Include="yaApplication.cpp" />
     <ClCompile Include="main.cpp" />

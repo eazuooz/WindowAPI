@@ -4,14 +4,17 @@
 
 namespace ya
 {
+	class Component;
 	class Object : public Entity
 	{
 	public:
 		Object();
 		~Object();
 
-		virtual void Tick() = 0;
+		virtual void Tick();
 		virtual void Render(HDC hdc);
+
+		void AddComponent(Component* component);
 
 	public:
 		void SetPos(Vector2 pos) { mPos = pos; }
@@ -23,5 +26,7 @@ namespace ya
 	private:
 		Vector2 mPos;
 		Vector2 mScale;
+
+		std::vector<Component*> mComponents;
 	};
 }

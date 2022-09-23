@@ -18,26 +18,35 @@ private:\
 #define KEY_DOWN(KEY) ya::KEY_STATE::DOWN == ya::InputManager::GetInstance().GetKeyState(KEY)
 #define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetInstance().GetKeyState(KEY)
 
-enum SCENE_TYPE
+enum eSceneType
 {
-	LOGO,
-	START,
-	STAGE_01,
-	END,
+	Logo,
+	Start,
+	Stage_01,
+	End,
 };
 
-enum class PEN_COLOR
+enum class ePenColor
 {
-	RED,
-	GREEN,
-	BLUE,
-	END,
+	Red,
+	Green,
+	Blue,
+	End,
 };
 
-enum class BRUSH_COLOR
+enum class eBrushColor
 {
-	HOLLOW, // 투명 브러쉬
-	BLACK,  // 검은 브러쉬
-	GRAY,	// 회색 브러쉬
-	END,
+	Transparent, // 투명 브러쉬
+	Black,  // 검은 브러쉬
+	Gray,	// 회색 브러쉬
+	End,
 };
+
+enum class eComponentType
+{
+	Collider,
+	Animator,
+	Gravity,
+	End,
+};
+

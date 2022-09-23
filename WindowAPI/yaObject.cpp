@@ -1,9 +1,11 @@
 #include "yaObject.h"
-
+#include "yaComponent.h"
 
 namespace ya
 {
     Object::Object()
+        : mPos{}
+        , mScale{}
     {
     }
 
@@ -11,12 +13,23 @@ namespace ya
     {
     }
 
+    void Object::Tick()
+    {
+        for (Component* component : mComponents)
+        {
+            component->Tick();
+        }
+    }
+
     void Object::Render(HDC hdc)
     {
-        Rectangle(hdc
-            , int(mPos.x - mScale.x / 2.f)
-            , int(mPos.y - mScale.y / 2.f)
-            , int(mPos.x + mScale.x / 2.f)
-            , int(mPos.y + mScale.y / 2.f));
+        for (Component* component : mComponents)
+        {
+            component->Render(hdc);
+        }
+    }
+    void Object::AddComponent(Component* component)
+    {
+        mComponents.push_back(component);
     }
 }

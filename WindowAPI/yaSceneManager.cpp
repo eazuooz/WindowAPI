@@ -13,7 +13,7 @@ namespace ya
 
 	SceneManager::~SceneManager()
 	{
-		for (int i = 0; i < SCENE_TYPE::END; ++i)
+		for (int i = 0; i < eSceneType::End; ++i)
 		{
 			if (nullptr != mScenes[i])
 				delete mScenes[i];
@@ -22,10 +22,10 @@ namespace ya
 
 	void SceneManager::Initialize()
 	{
-		mScenes[LOGO] = new LogoScene();
-		mScenes[LOGO]->Initialize();
+		mScenes[Logo] = new LogoScene();
+		mScenes[Logo]->Initialize();
 
-		mPlayScene = mScenes[LOGO];
+		mPlayScene = mScenes[Logo];
 	}
 
 	void SceneManager::Tick()

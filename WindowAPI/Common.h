@@ -9,6 +9,7 @@
 #include "yaMath.h"
 #include "def.h"
 
+#pragma comment(lib, "Msimg32.lib")
 //using std::vector;
 //using std::list;
 //using std::map;
