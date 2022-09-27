@@ -3,7 +3,7 @@
 
 namespace ya
 {
-    Time* Time::mInstance = nullptr;
+    //Time* Time::mInstance = nullptr;
 
     Time::Time()
         : mCpuFrequency{}
@@ -22,7 +22,7 @@ namespace ya
 
     float Time::DeltaTime()
     {
-        return mInstance->mDeltaTime;
+        return GetInstance().mDeltaTime;
     }
 
     void Time::Initialize()

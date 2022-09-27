@@ -15,9 +15,9 @@ namespace ya
 		virtual void Tick();
 		virtual void Render(HDC hdc);
 
-		void AddObject(Object* object);
+		void AddObject(Object* object, eColliderLayer type);
 
 	private:
-		std::vector<Object*> mObjects;
+		std::vector<std::vector<Object*>> mObjects;
 	};
 }

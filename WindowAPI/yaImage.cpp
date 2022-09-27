@@ -14,6 +14,8 @@ namespace ya
 
 	Image::~Image()
 	{
+		DeleteDC(mHdc);
+		DeleteObject(mHBitmap);
 	}
 
 	HRESULT Image::Load(const std::wstring& path)

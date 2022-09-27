@@ -109,7 +109,6 @@
     <ClInclude Include="yaImage.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="yaPaths.h" />
     <ClInclude Include="yaComponent.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -122,6 +121,10 @@
     <ClInclude Include="yaAnimator.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="yaPaths.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMonster.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -166,7 +169,6 @@
     <ClCompile Include="yaImage.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="yaPaths.cpp" />
     <ClCompile Include="yaComponent.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -176,6 +178,10 @@
     <ClCompile Include="yaAnimator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="yaPaths.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMonster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

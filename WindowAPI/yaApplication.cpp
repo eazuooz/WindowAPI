@@ -6,7 +6,7 @@
 
 namespace ya
 {
-	Application* Application::mInstance = nullptr;
+	//Application* Application::mInstance = nullptr;
 	int Application::mIsStatic = 0;
 
 	Application::Application()
@@ -16,6 +16,8 @@ namespace ya
 
 	Application::~Application()
 	{
+		Resources::Release();
+
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
 		DeleteDC(mWindowData.backBuffer);
 		DeleteObject(mWindowData.backTexture);
@@ -25,8 +27,6 @@ namespace ya
 		{
 			DeleteObject(mPens[i]);
 		}
-
-		Resources::Release();
 	}
 	
 	bool Application::Initialize(WindowData& data)

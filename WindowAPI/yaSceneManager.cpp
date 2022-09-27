@@ -4,7 +4,7 @@
 
 namespace ya
 {
-	SceneManager* SceneManager::mInstance = nullptr;
+	//SceneManager* SceneManager::mInstance = nullptr;
 	SceneManager::SceneManager()
 		: mScenes{}
 		, mPlayScene(nullptr)

@@ -13,6 +13,22 @@ struct Vector2
     Vector2(Vector2&&) = default;
     Vector2& operator=(Vector2&&) = default;
 
+    Vector2& operator+(const Vector2& other)
+    {
+        x += other.x;
+        y += other.y;
+
+        return *this;
+    }
+
+    Vector2& operator +=(const Vector2 other)
+    {
+        x += other.x;
+        y += other.y;
+
+        return *this;
+    }
+
     constexpr Vector2(float _x, float _y) noexcept 
         : x(_x)
         , y(_y) 

@@ -3,11 +3,12 @@
 
 namespace ya
 {
-        class Player : public Object
-        {
+	class Monster : public Object
+	{
+
         public:
-            Player();
-            ~Player();
+            Monster();
+            ~Monster();
 
             virtual void Tick() override;
             virtual void Render(HDC hdc) override;
@@ -15,5 +16,5 @@ namespace ya
         private:
             float mSpeed;
             float mShotTime;
-        };
+	};
 }

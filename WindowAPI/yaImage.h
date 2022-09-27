@@ -7,7 +7,7 @@ namespace ya
 	{
 	public:
 		Image();
-		~Image();
+		virtual ~Image() override;
 
 		virtual HRESULT Load(const std::wstring& path) override;
 

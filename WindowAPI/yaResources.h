@@ -1,6 +1,7 @@
 #pragma once
 #include "Common.h"
 
+
 namespace ya
 {
 	class Resource;
@@ -44,19 +45,12 @@ namespace ya
 
 			resource->SetKey(key);
 			resource->SetPath(path);
-			mResources.insert(make_pair(key, resource));
+			mResources.insert(make_pair(key, dynamic_cast<Resource*>(resource)));
 
 			return dynamic_cast<T*>(resource);
 		}
 
-		static void Release()
-		{
-			std::map<std::wstring, Resource*>::iterator iter = mResources.begin();
-			for (; iter != mResources.end(); ++iter)
-			{
-				delete(iter->second);
-			}
-		}
+		static void Release();
 
 	private:
 		Resources() { }

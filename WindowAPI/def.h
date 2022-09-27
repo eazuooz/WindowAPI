@@ -3,20 +3,18 @@
 public:\
 	static type& GetInstance()\
 	{\
-		if (mInstance == nullptr)\
-		{\
-			mInstance = new type();\
-		}\
-		return *mInstance;\
+		static type mInstance;\
+		return mInstance;\
 	}\
 private:\
-	static type* mInstance;\
 	type();\
 	~type();
 
 #define KEY_PREESED(KEY) ya::KEY_STATE::PRESSED == ya::InputManager::GetInstance().GetKeyState(KEY)
 #define KEY_DOWN(KEY) ya::KEY_STATE::DOWN == ya::InputManager::GetInstance().GetKeyState(KEY)
 #define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetInstance().GetKeyState(KEY)
+
+#define _COLLIDER_LAYER 16
 
 enum eSceneType
 {
@@ -48,5 +46,20 @@ enum class eComponentType
 	Animator,
 	Gravity,
 	End,
+};
+
+enum class eColliderLayer
+{
+	DEFAULT,
+	BACKGROUND,
+	TILE,
+	PLAYER,
+	PLAYER_PROJECTILE,
+	MONSTER,
+	MONSTER_PROJECTILE,
+
+
+	UI = _COLLIDER_LAYER - 1,
+	END = _COLLIDER_LAYER,
 };
 

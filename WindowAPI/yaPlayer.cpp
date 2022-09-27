@@ -21,6 +21,9 @@ namespace ya
 	{
 		AddComponent(new Collider());
 		AddComponent(new Animator());
+
+		GetCollider()->SetScale(Vector2(50.f, 50.f));
+		GetCollider()->SetOffset(Vector2(0.f, 25.f));
 	}
 
 	Player::~Player()
@@ -29,6 +32,8 @@ namespace ya
 
 	void Player::Tick()
 	{
+		
+
 		// 키입력에 따른 이동
 		Vector2 vPos = GetPos();
 
@@ -64,7 +69,7 @@ namespace ya
 				pMissile->SetPos(GetPos());
 				pMissile->SetScale(Vector2(20.f, 20.f));
 
-				pCurScene->AddObject(pMissile);
+				pCurScene->AddObject(pMissile, eColliderLayer::PLAYER_PROJECTILE);
 
 				mShotTime = 0.f;
 			}
@@ -72,10 +77,14 @@ namespace ya
 		mShotTime += Time::DeltaTime();
 
 		SetPos(vPos);
+
+		Object::Tick();
 	}
 
 	void Player::Render(HDC hdc)
 	{
+		
+
 		Image* pImage = Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
 		//Image* pImage = Resources::Find<Image>(L"PlayerImage");
 
@@ -88,6 +97,10 @@ namespace ya
 			, (int)vPos.y - pImage->GetHeight() / 2
 			, pImage->GetWidth(), pImage->GetHeight()
 			, pImage->GetDC(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
+
+		//Resource* p = pImage;
+
+		//delete p;
 
 		Object::Render(hdc);
 	}

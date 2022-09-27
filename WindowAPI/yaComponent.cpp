@@ -5,7 +5,8 @@
 namespace ya
 {
 	Component::Component(eComponentType type)
-		: mType()
+		: mType(type)
+		, mOwner(nullptr)
 	{
 	}
 

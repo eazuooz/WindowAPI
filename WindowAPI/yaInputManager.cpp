@@ -26,7 +26,7 @@ namespace ya
 		'6', '7', '8', '9',
 	};
 	
-	InputManager* InputManager::mInstance = nullptr;
+	//InputManager* InputManager::mInstance = nullptr;
 
 	InputManager::InputManager()
 	{
