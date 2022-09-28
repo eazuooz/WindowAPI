@@ -63,13 +63,13 @@ namespace ya
 			if (mShotTime >= 0.1f)
 			{
 				// ¹Ì»çÀÏ ½î±â
-				Scene* pCurScene = SceneManager::GetInstance().GetPlayScene();
+				Scene* pCurScene = SceneManager::GetPlayScene();
 				Missile* pMissile = new Missile();
 
 				pMissile->SetPos(GetPos());
 				pMissile->SetScale(Vector2(20.f, 20.f));
 
-				pCurScene->AddObject(pMissile, eColliderLayer::PLAYER_PROJECTILE);
+				pCurScene->AddObject(pMissile, eColliderLayer::PlayerProjecttile);
 
 				mShotTime = 0.f;
 			}

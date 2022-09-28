@@ -124,7 +124,10 @@
     <ClInclude Include="yaPaths.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="yaMonster.h" />
+    <ClInclude Include="yaMonster.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -181,7 +184,10 @@
     <ClCompile Include="yaPaths.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="yaMonster.cpp" />
+    <ClCompile Include="yaMonster.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

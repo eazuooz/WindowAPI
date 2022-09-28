@@ -6,16 +6,16 @@ namespace ya
 	class Scene;
 	class SceneManager
 	{
-		SINGLE(SceneManager)
 	public:
-		void Initialize();
-		void Tick();
-		void Render(HDC hdc);
+		static void Initialize();
+		static void Release();
+		static void Tick();
+		static void Render(HDC hdc);
 
-		Scene* GetPlayScene() { return mPlayScene; }
+		static Scene* GetPlayScene() { return mPlayScene; }
 
 	private:
-		Scene* mScenes[eSceneType::End];
-		Scene* mPlayScene;
+		static Scene* mScenes[eSceneType::End];
+		static Scene* mPlayScene;
 	};
 }

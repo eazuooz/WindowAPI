@@ -5,22 +5,20 @@ namespace ya
 {
 	class Time
 	{
-		SINGLE(Time)
-
 	public:
 		static float DeltaTime();
 
-		void Initialize();
-		void Tick();
-		void Render(HDC hdc);
+		static void Initialize();
+		static void Tick();
+		static void Render(HDC hdc);
 
 	private:
-		LARGE_INTEGER	mCpuFrequency;
-		LARGE_INTEGER   mPrevFrequency;
-		LARGE_INTEGER	mCurFrequency;
+		static LARGE_INTEGER	mCpuFrequency;
+		static LARGE_INTEGER   mPrevFrequency;
+		static LARGE_INTEGER	mCurFrequency;
 
-		float			mDeltaTime;
-		float			mOneSecond;
+		static float			mDeltaTime;
+		static float			mOneSecond;
 	};
 }
 

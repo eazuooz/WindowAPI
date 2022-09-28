@@ -10,7 +10,7 @@ namespace ya
 
 	Scene::~Scene()
 	{
-		for (size_t y = 0; y < (UINT)eColliderLayer::END; y++)
+		for (size_t y = 0; y < (UINT)eColliderLayer::End; y++)
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{
@@ -23,7 +23,7 @@ namespace ya
 
 	void Scene::Tick()
 	{
-		for (size_t y = 0; y < (UINT)eColliderLayer::END; y++)
+		for (size_t y = 0; y < (UINT)eColliderLayer::End; y++)
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{
@@ -35,7 +35,7 @@ namespace ya
 
 	void Scene::Render(HDC hdc)
 	{
-		for (size_t y = 0; y < (UINT)eColliderLayer::END; y++)
+		for (size_t y = 0; y < (UINT)eColliderLayer::End; y++)
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{

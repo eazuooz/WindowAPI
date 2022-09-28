@@ -4,21 +4,8 @@
 
 namespace ya
 {
-	//SceneManager* SceneManager::mInstance = nullptr;
-	SceneManager::SceneManager()
-		: mScenes{}
-		, mPlayScene(nullptr)
-	{
-	}
-
-	SceneManager::~SceneManager()
-	{
-		for (int i = 0; i < eSceneType::End; ++i)
-		{
-			if (nullptr != mScenes[i])
-				delete mScenes[i];
-		}
-	}
+	Scene* SceneManager::mScenes[eSceneType::End] = {};
+	Scene* SceneManager::mPlayScene = nullptr;
 
 	void SceneManager::Initialize()
 	{
@@ -26,6 +13,15 @@ namespace ya
 		mScenes[Logo]->Initialize();
 
 		mPlayScene = mScenes[Logo];
+	}
+
+	void SceneManager::Release()
+	{
+		for (int i = 0; i < eSceneType::End; ++i)
+		{
+			if (nullptr != mScenes[i])
+				delete mScenes[i];
+		}
 	}
 
 	void SceneManager::Tick()

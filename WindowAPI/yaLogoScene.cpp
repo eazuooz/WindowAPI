@@ -1,6 +1,7 @@
 #include "yaLogoScene.h"
 #include "yaPlayer.h"
 #include "yaMonster.h"
+#include "yaCollisionManager.h"
 
 namespace ya
 {
@@ -10,13 +11,17 @@ namespace ya
 		player->SetPos(Vector2(500.f, 500.f));
 		player->SetScale(Vector2(50.f, 50.f));
 
-		AddObject(player, eColliderLayer::PLAYER);
+		AddObject(player, eColliderLayer::Player);
 
 		// Monster »ý¼º
 		Object* pMonster = new Monster;
 		pMonster->SetPos(Vector2(1920.0f / 2.0f, 1080.0f / 5.0f));
 		pMonster->SetScale(Vector2(50.f, 50.f));
 		
-		AddObject(pMonster, eColliderLayer::MONSTER);
+		AddObject(pMonster, eColliderLayer::Monster);
+
+		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::MosterProjectile, true);
+		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::PlayerProjecttile, true);
+		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::Monster, true);
 	}
 }

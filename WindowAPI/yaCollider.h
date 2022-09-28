@@ -13,6 +13,8 @@ namespace ya
 		virtual void Tick() override;
 		virtual void Render(HDC hdc) override;
 
+		Vector2 GetScale() { return mScale; }
+		Vector2 GetPos() { return mPos; }
 		void SetScale(Vector2 scale) { mScale = scale; }
 		void SetOffset(Vector2 offset) { mOffset = offset; }
 

@@ -3,26 +3,15 @@
 
 namespace ya
 {
-    //Time* Time::mInstance = nullptr;
-
-    Time::Time()
-        : mCpuFrequency{}
-        , mPrevFrequency{}
-        , mCurFrequency{}
-        , mDeltaTime(0.0f)
-        , mOneSecond(0.0f)
-    {
-
-    }
-
-    Time::~Time()
-    {
-
-    }
+    LARGE_INTEGER	Time::mCpuFrequency = {};
+    LARGE_INTEGER   Time::mPrevFrequency = {};
+    LARGE_INTEGER	Time::mCurFrequency = {};
+    float			Time::mDeltaTime = 0.0f;
+    float			Time::mOneSecond = 0.0f;
 
     float Time::DeltaTime()
     {
-        return GetInstance().mDeltaTime;
+        return mDeltaTime;
     }
 
     void Time::Initialize()

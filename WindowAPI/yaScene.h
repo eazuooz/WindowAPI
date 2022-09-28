@@ -16,6 +16,10 @@ namespace ya
 		virtual void Render(HDC hdc);
 
 		void AddObject(Object* object, eColliderLayer type);
+		const std::vector<Object*>& GetObjects(eColliderLayer type)
+		{
+			return mObjects[(UINT)type];
+		}
 
 	private:
 		std::vector<std::vector<Object*>> mObjects;

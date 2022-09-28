@@ -3,6 +3,7 @@
 
 namespace ya
 {
+	std::vector<InputManager::Key> InputManager::mKeys;
 	int ASCII[(UINT)KEY_CODE::END] =
 	{
 		//Alphabet
@@ -26,17 +27,6 @@ namespace ya
 		'6', '7', '8', '9',
 	};
 	
-	//InputManager* InputManager::mInstance = nullptr;
-
-	InputManager::InputManager()
-	{
-
-	}
-
-	InputManager::~InputManager()
-	{
-
-	}
 
 	void InputManager::Initialize()
 	{

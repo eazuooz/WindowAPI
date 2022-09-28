@@ -39,8 +39,6 @@ namespace ya
 
 	class InputManager
 	{
-		SINGLE(InputManager)
-
 	public:
 		struct Key
 		{
@@ -49,12 +47,12 @@ namespace ya
 			bool	  bPressed;
 		};
 
-		void Initialize();
-		void Tick();
+		static void Initialize();
+		static void Tick();
 
-		KEY_STATE GetKeyState(KEY_CODE keyCode);
+		static KEY_STATE GetKeyState(KEY_CODE keyCode);
 
 	private:
-		std::vector<Key> mKeys;
+		static std::vector<Key> mKeys;
 	};
 }

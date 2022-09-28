@@ -10,9 +10,9 @@ private:\
 	type();\
 	~type();
 
-#define KEY_PREESED(KEY) ya::KEY_STATE::PRESSED == ya::InputManager::GetInstance().GetKeyState(KEY)
-#define KEY_DOWN(KEY) ya::KEY_STATE::DOWN == ya::InputManager::GetInstance().GetKeyState(KEY)
-#define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetInstance().GetKeyState(KEY)
+#define KEY_PREESED(KEY) ya::KEY_STATE::PRESSED == ya::InputManager::GetKeyState(KEY)
+#define KEY_DOWN(KEY) ya::KEY_STATE::DOWN == ya::InputManager::GetKeyState(KEY)
+#define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetKeyState(KEY)
 
 #define _COLLIDER_LAYER 16
 
@@ -50,16 +50,15 @@ enum class eComponentType
 
 enum class eColliderLayer
 {
-	DEFAULT,
-	BACKGROUND,
-	TILE,
-	PLAYER,
-	PLAYER_PROJECTILE,
-	MONSTER,
-	MONSTER_PROJECTILE,
+	Default,
+	BackGround,
+	Tile,
+	Player,
+	PlayerProjecttile,
+	Monster,
+	MosterProjectile,
 
-
-	UI = _COLLIDER_LAYER - 1,
-	END = _COLLIDER_LAYER,
+	Ui = _COLLIDER_LAYER - 1,
+	End = _COLLIDER_LAYER,
 };
 

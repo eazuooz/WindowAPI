@@ -3,6 +3,7 @@
 #include "yaSceneManager.h"
 #include "yaInputManager.h"
 #include "yaResources.h"
+#include "yaCollisionManager.h"
 
 namespace ya
 {
@@ -17,6 +18,7 @@ namespace ya
 	Application::~Application()
 	{
 		Resources::Release();
+		SceneManager::Release();
 
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
 		DeleteDC(mWindowData.backBuffer);
@@ -38,9 +40,9 @@ namespace ya
 		createDefaultGDIObject();
 
 		// 초기화
-		SceneManager::GetInstance().Initialize();
-		Time::GetInstance().Initialize();
-		InputManager::GetInstance().Initialize();
+		SceneManager::Initialize();
+		Time::Initialize();
+		InputManager::Initialize();
 
 		return true;
 	}
@@ -81,10 +83,12 @@ namespace ya
 	void Application::Tick()
 	{
 		// 업데이트
-		Time::GetInstance().Tick();
-		InputManager::GetInstance().Tick();
-		SceneManager::GetInstance().Tick();
+		Time::Tick();
+		InputManager::Tick();
 
+		SceneManager::Tick();
+
+		CollisionManager::Tick();
 		
 		// Clear
 		HBRUSH hPrevBrush = (HBRUSH)SelectObject(mWindowData.backBuffer, mBrushes[(UINT)eBrushColor::Gray]);
@@ -92,8 +96,8 @@ namespace ya
 		SelectObject(mWindowData.backBuffer, hPrevBrush);
 
 		// 렌더링
-		SceneManager::GetInstance().Render(mWindowData.backBuffer);
-		Time::GetInstance().Render(mWindowData.backBuffer);
+		SceneManager::Render(mWindowData.backBuffer);
+		Time::Render(mWindowData.backBuffer);
 
 		// BitBlt 함수는 DC 간에 그림을 복사하는 함수입니다. 
 		BitBlt(mWindowData.hdc, 0, 0, mWindowData.width, mWindowData.height
