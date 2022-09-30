@@ -62,3 +62,13 @@ enum class eColliderLayer
 	End = _COLLIDER_LAYER,
 };
 
+
+union ColliderID
+{
+	struct
+	{
+		UINT32 left;
+		UINT32 right;
+	};
+	UINT64 ID;
+};

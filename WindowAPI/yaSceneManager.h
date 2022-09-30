@@ -12,7 +12,7 @@ namespace ya
 		static void Tick();
 		static void Render(HDC hdc);
 
-		static Scene* GetPlayScene() { return mPlayScene; }
+		static inline Scene* GetPlayScene() { return mPlayScene; }
 
 	private:
 		static Scene* mScenes[eSceneType::End];

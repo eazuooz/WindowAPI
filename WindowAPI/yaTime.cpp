@@ -9,11 +9,6 @@ namespace ya
     float			Time::mDeltaTime = 0.0f;
     float			Time::mOneSecond = 0.0f;
 
-    float Time::DeltaTime()
-    {
-        return mDeltaTime;
-    }
-
     void Time::Initialize()
     {
         //CPU 의 초당 반복되는 주파수를 얻어온다.

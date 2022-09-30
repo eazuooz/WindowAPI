@@ -8,13 +8,21 @@
 namespace ya
 {
 	WORD CollisionManager::mMatrix[_COLLIDER_LAYER] = {};
+	std::map<UINT64, bool> CollisionManager::mCollisionInfomations;
+
 	void CollisionManager::Tick()
 	{
+#ifdef _DEBUG
+		std::bitset<16> bits[16];
+		for (size_t i = 0; i < 16; i++)
+		{
+			bits[i] = mMatrix[i];
+		}
+#endif
 		Scene* scene = SceneManager::GetPlayScene();
-
 		for (UINT row = 0; row < _COLLIDER_LAYER; row++)
 		{
-			for (UINT col = 0; col < _COLLIDER_LAYER; col++)
+			for (UINT col = row; col < _COLLIDER_LAYER; col++)
 			{
 				if (mMatrix[row] & (1 << col))
 				{
@@ -24,11 +32,10 @@ namespace ya
 		}
 	}
 
-	void CollisionManager::LayerCollision(Scene* scene, eColliderLayer left, eColliderLayer right)
+	void CollisionManager::LayerCollision(Scene* scene, eColliderLayer leftLayer, eColliderLayer rightLayer)
 	{
-
-		const std::vector<Object*>& lefts = scene->GetObjects(left);
-		const std::vector<Object*>& rights = scene->GetObjects(right);
+		const std::vector<Object*>& lefts = scene->GetObjects(leftLayer);
+		const std::vector<Object*>& rights = scene->GetObjects(rightLayer);
 
 		for (auto leftObject : lefts)
 		{
@@ -39,18 +46,62 @@ namespace ya
 			{
 				if (rightObject->GetCollider() == nullptr)
 					continue;
-				if (leftObject == rightObject)
+				if (rightObject == leftObject)
 					continue;
 
-				if (Intersect(leftObject->GetCollider(), rightObject->GetCollider()))
-				{
-					// 충돌 중
-				}
-				else
-				{
-					// 충돌 X
-				}
+				ColliderCollision(leftObject->GetCollider(), rightObject->GetCollider());
 			}
+
+			if (leftLayer == rightLayer)
+				break;
+		}
+	}
+
+	void CollisionManager::ColliderCollision(Collider* left, Collider* right)
+	{
+		// 두 충돌체의  ID 확인
+		ColliderID id;
+		id.left = left->GetID();
+		id.right = right->GetID();
+
+		// 이전 충돌정보를 검색한다.
+		std::map<UINT64, bool>::iterator iter
+			= mCollisionInfomations.find(id.ID);
+
+		// 충돌정보가 없다면 충돌정보를 만들어준다.
+		if (iter == mCollisionInfomations.end())
+		{
+			mCollisionInfomations.insert(std::make_pair(id.ID, false));
+			iter = mCollisionInfomations.find(id.ID);
+		}
+
+		if (Intersect(left, right))
+		{
+			// 충돌 중
+			if (iter->second == false)
+			{
+				//최초 충돌했을때
+				left->OnCollisionEnter(right);
+				right->OnCollisionEnter(left);
+				iter->second = true;
+			}
+			else
+			{
+				//충돌 중일때
+				left->OnCollisionStay(right);
+				right->OnCollisionStay(left);
+			}
+		}
+		else
+		{
+			// 충돌 X
+			if (iter->second)
+			{
+				left->OnCollisionExit(right);
+				right->OnCollisionExit(left);
+				iter->second = false;
+			}
+
 		}
 	}
 
@@ -103,5 +154,9 @@ namespace ya
 			mMatrix[row] |= (1 << col);
 		else
 			mMatrix[row] &= ~(1 << col);
+
+#ifdef _DEBUG
+		std::bitset<16> bits = mMatrix[row];
+#endif
 	}
 }

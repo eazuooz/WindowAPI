@@ -19,7 +19,7 @@ namespace ya
 		AddComponent(new Collider());
 		AddComponent(new Animator());
 
-		GetCollider()->SetScale(Vector2(100.f, 100.f));
+		GetCollider()->SetScale(Vector2(200.f, 100.f));
 		GetCollider()->SetOffset(Vector2(0.f, 0.f));
 	}
 

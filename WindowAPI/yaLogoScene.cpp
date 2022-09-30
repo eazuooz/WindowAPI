@@ -20,8 +20,17 @@ namespace ya
 		
 		AddObject(pMonster, eColliderLayer::Monster);
 
+		Object* pMonster2 = new Monster;
+		pMonster2->SetPos(Vector2(1920.0f / 2.0f - 100, 1080.0f / 5.0f));
+		pMonster2->SetScale(Vector2(50.f, 50.f));
+
+		AddObject(pMonster2, eColliderLayer::Monster);
+
 		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::MosterProjectile, true);
 		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::PlayerProjecttile, true);
 		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::Monster, true);
+
+		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Monster, true);
+
 	}
 }

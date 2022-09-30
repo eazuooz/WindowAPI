@@ -1,10 +1,13 @@
 #pragma once
 #include "framework.h"
 
+#include <assert.h>
+#include <bitset>
 #include <string>
 #include <vector>
 #include <list>
 #include <map>
+
 
 #include "yaMath.h"
 #include "def.h"
@@ -16,6 +19,7 @@
 //using std::make_pair;
 //using std::string;
 //using std::wstring;
+
 
 namespace ya
 {
@@ -58,6 +62,11 @@ namespace ya
 		~Pen()
 		{
 			SelectObject(mHdc, mOldPen);
+		}
+
+		void SetColor(HPEN pen)
+		{
+			mOldPen = (HPEN)SelectObject(mHdc, pen);
 		}
 	};
 

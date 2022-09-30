@@ -50,7 +50,10 @@ namespace ya
 		static void Initialize();
 		static void Tick();
 
-		static KEY_STATE GetKeyState(KEY_CODE keyCode);
+		static __forceinline KEY_STATE GetKeyState(KEY_CODE keyCode) 
+		{ 
+			return mKeys[static_cast<UINT>(keyCode)].eState; 
+		}
 
 	private:
 		static std::vector<Key> mKeys;

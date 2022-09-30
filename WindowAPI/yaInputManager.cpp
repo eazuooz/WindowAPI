@@ -68,9 +68,4 @@ namespace ya
 			}
 		}
 	}
-
-	KEY_STATE InputManager::GetKeyState(KEY_CODE keyCode)
-	{
-		return mKeys[static_cast<UINT>(keyCode)].eState;
-	}
 }

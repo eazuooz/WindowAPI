@@ -121,13 +121,13 @@
     <ClInclude Include="yaAnimator.h">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="yaPaths.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="yaMonster.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="yaCollisionManager.h" />
+    <ClInclude Include="yaPaths.h">
+      <Filter>Manager\PathManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -181,13 +181,13 @@
     <ClCompile Include="yaAnimator.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="yaPaths.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="yaMonster.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="yaCollisionManager.cpp" />
+    <ClCompile Include="yaPaths.cpp">
+      <Filter>Manager\PathManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

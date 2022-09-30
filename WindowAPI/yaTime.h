@@ -6,7 +6,7 @@ namespace ya
 	class Time
 	{
 	public:
-		static float DeltaTime();
+		static __forceinline float DeltaTime() { return mDeltaTime; }
 
 		static void Initialize();
 		static void Tick();
