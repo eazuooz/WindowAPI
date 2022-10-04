@@ -23,7 +23,10 @@ namespace ya
 		Vector2 GetPos() { return mPos; }
 		Vector2 GetScale() { return mScale; }
 
-		Collider* GetCollider() { return (Collider*)(mComponents[(UINT)eComponentType::Collider]); }
+		inline Collider* GetCollider() 
+		{ 
+			return (Collider*)(mComponents[(UINT)eComponentType::Collider]); 
+		}
 
 	private:
 		std::vector<Component*> mComponents;

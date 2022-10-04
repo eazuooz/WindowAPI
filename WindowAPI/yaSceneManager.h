@@ -15,6 +15,10 @@ namespace ya
 		static inline Scene* GetPlayScene() { return mPlayScene; }
 
 	private:
+		SceneManager() = delete;
+		~SceneManager() = delete;
+
+	private:
 		static Scene* mScenes[eSceneType::End];
 		static Scene* mPlayScene;
 	};

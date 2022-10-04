@@ -2,6 +2,7 @@
 
 #include "yaObject.h"
 #include "yaApplication.h"
+#include "yaCamera.h"
 
 namespace ya
 {
@@ -36,10 +37,13 @@ namespace ya
 
 		Brush brush(hdc, Application::GetInstance().GetBrush(eBrushColor::Transparent));
 
-		Rectangle(hdc, (int)(mPos.x - mScale.x / 2.f)
-			, (int)(mPos.y - mScale.y / 2.f)
-			, (int)(mPos.x + mScale.x / 2.f)
-			, (int)(mPos.y + mScale.y / 2.f));
+		
+		Vector2 pos = Camera::CalulatePos(mPos);
+
+		Rectangle(hdc, (int)(pos.x - mScale.x / 2.f)
+			, (int)(pos.y - mScale.y / 2.f)
+			, (int)(pos.x + mScale.x / 2.f)
+			, (int)(pos.y + mScale.y / 2.f));
 
 	}
 	void Collider::OnCollisionEnter(Collider* other)

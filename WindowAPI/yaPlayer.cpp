@@ -10,6 +10,7 @@
 
 #include "yaCollider.h"
 #include "yaAnimator.h"
+#include "yaCamera.h"
 
 #include "yaMissile.h"
 
@@ -76,6 +77,8 @@ namespace ya
 		}
 		mShotTime += Time::DeltaTime();
 
+
+		
 		SetPos(vPos);
 
 		Object::Tick();
@@ -92,6 +95,10 @@ namespace ya
 			return;
 
 		Vector2 vPos = GetPos();
+		vPos = Camera::CalulatePos(vPos);
+
+		//SetPos(vPos);
+
 		//BitBlt(hdc, (int)vPos.x - 61, (int)vPos.y - 62, 123, 124, pImage->GetDC(), 0, 0, SRCCOPY);
 		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
 			, (int)vPos.y - pImage->GetHeight() / 2

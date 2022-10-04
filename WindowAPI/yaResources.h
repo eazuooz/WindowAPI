@@ -53,8 +53,8 @@ namespace ya
 		static void Release();
 
 	private:
-		Resources() { }
-		~Resources() { }
+		Resources() = delete;
+		~Resources() = delete;
 	
 	private:
 		static std::map<std::wstring, Resource*> mResources;

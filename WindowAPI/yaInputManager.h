@@ -56,6 +56,10 @@ namespace ya
 		}
 
 	private:
+		InputManager() = delete;
+		~InputManager() = delete;
+
+	private:
 		static std::vector<Key> mKeys;
 	};
 }

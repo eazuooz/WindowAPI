@@ -9,6 +9,8 @@
 
 #include "yaCollider.h"
 #include "yaAnimator.h"
+#include "yaCamera.h"
+
 
 namespace ya
 {
@@ -21,6 +23,8 @@ namespace ya
 
 		GetCollider()->SetScale(Vector2(20.f, 20.f));
 		GetCollider()->SetOffset(Vector2(0.f, 0.f));
+
+		Camera::SetTarget(this);
 	}
 
 	Missile::~Missile()
@@ -45,6 +49,7 @@ namespace ya
 			return;
 
 		Vector2 vPos = GetPos();
+		vPos = Camera::CalulatePos(vPos);
 		
 		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
 			, (int)vPos.y - pImage->GetHeight() / 2

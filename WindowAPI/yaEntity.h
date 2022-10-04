@@ -12,11 +12,11 @@ namespace ya
 
 		void SetName(const std::wstring& name) { mName = name; }
 		const std::wstring& GetName() { return mName; }
-		UINT64 GetID() { return mID; }
+		UINT32 GetID() { return mID; }
 
 	private:
 		std::wstring mName;
-		const UINT64 mID;
+		const UINT32 mID;
 		
 	};
 }

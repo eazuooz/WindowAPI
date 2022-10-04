@@ -18,6 +18,10 @@ namespace ya
 		static void SetLayer(eColliderLayer left, eColliderLayer right, bool value);
 		
 	private:
+		CollisionManager() = delete;
+		~CollisionManager() = delete;
+
+	private:
 		static WORD mMatrix[_COLLIDER_LAYER];
 		static std::map<UINT64, bool> mCollisionInfomations;
 	};
