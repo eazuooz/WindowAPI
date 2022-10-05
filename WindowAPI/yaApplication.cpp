@@ -5,6 +5,7 @@
 #include "yaResources.h"
 #include "yaCollisionManager.h"
 #include "yaCamera.h"
+#include "yaImage.h"
 
 namespace ya
 {
@@ -56,12 +57,8 @@ namespace ya
 		mWindowData.width = data.width;
 		mWindowData.height = data.height;
 
-
-		// 비트맵 해상도를 설정하기 위한 실제 윈도우 크기 계산
 		RECT rect = { 0, 0, mWindowData.width, mWindowData.height };
 		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-		// 윈도우 크기 변경 및 출력 설정
 		SetWindowPos(mWindowData.hWnd
 			, nullptr, 0, 0
 			, rect.right - rect.left
@@ -69,15 +66,10 @@ namespace ya
 			, 0);
 		ShowWindow(mWindowData.hWnd, true);
 
-		// 이중 버퍼링
-		// 윈도우 해상도와 동일한 크기의 비트맵을 생성
-		// 새로 생성한 비트맵을 가리키는 전용 DC 생성
-		// 새소 생성한 비트맵과 DC 를 서로 연결
-		mWindowData.backTexture
-			= CreateCompatibleBitmap(mWindowData.hdc, mWindowData.width, mWindowData.height);
-		mWindowData.backBuffer = CreateCompatibleDC(mWindowData.hdc);
-		HBITMAP defaultBitmap = (HBITMAP)SelectObject(mWindowData.backBuffer, mWindowData.backTexture);
-		DeleteObject(defaultBitmap);
+		Image* backHdc 
+			= Image::Create(L"BackBuffer", mWindowData.width, mWindowData.height);
+		mWindowData.backTexture = backHdc->GetHBitmap();
+		mWindowData.backBuffer = backHdc->GetHdc();
 
 		return true;
 	}
@@ -101,6 +93,7 @@ namespace ya
 		// 렌더링
 		SceneManager::Render(mWindowData.backBuffer);
 		Time::Render(mWindowData.backBuffer);
+		Camera::Render(mWindowData.backBuffer);
 
 		// BitBlt 함수는 DC 간에 그림을 복사하는 함수입니다. 
 		BitBlt(mWindowData.hdc, 0, 0, mWindowData.width, mWindowData.height

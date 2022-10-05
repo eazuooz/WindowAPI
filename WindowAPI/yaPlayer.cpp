@@ -86,28 +86,17 @@ namespace ya
 
 	void Player::Render(HDC hdc)
 	{
-		
-
-		Image* pImage = Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
-		//Image* pImage = Resources::Find<Image>(L"PlayerImage");
-
+		Image* pImage 
+			= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
 		if (nullptr == pImage)
 			return;
 
 		Vector2 vPos = GetPos();
 		vPos = Camera::CalulatePos(vPos);
-
-		//SetPos(vPos);
-
-		//BitBlt(hdc, (int)vPos.x - 61, (int)vPos.y - 62, 123, 124, pImage->GetDC(), 0, 0, SRCCOPY);
 		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
 			, (int)vPos.y - pImage->GetHeight() / 2
 			, pImage->GetWidth(), pImage->GetHeight()
-			, pImage->GetDC(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
-
-		//Resource* p = pImage;
-
-		//delete p;
+			, pImage->GetHdc(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
 
 		Object::Render(hdc);
 	}

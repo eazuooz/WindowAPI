@@ -1,12 +1,11 @@
 #pragma once
 #include "Common.h"
-
+//#include "yaImage.h"
 
 namespace ya
 {
 	class Resource;
 	class Image;
-	//template <typename T>
 	class Resources
 	{
 	public:
@@ -48,6 +47,12 @@ namespace ya
 			mResources.insert(make_pair(key, dynamic_cast<Resource*>(resource)));
 
 			return dynamic_cast<T*>(resource);
+		}
+
+		template <typename T>
+		static void Insert(const std::wstring& key, T* resource)
+		{
+			mResources.insert(make_pair(key, dynamic_cast<Resource*>(resource)));
 		}
 
 		static void Release();

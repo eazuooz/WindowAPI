@@ -16,12 +16,15 @@
 namespace ya
 {
 	Monster::Monster()
+		: mImage(nullptr)
 	{
 		AddComponent(new Collider());
 		AddComponent(new Animator());
 
 		GetCollider()->SetScale(Vector2(200.f, 100.f));
 		GetCollider()->SetOffset(Vector2(0.f, 0.f));
+
+		mImage = Resources::Load<Image>(L"MonsterImage", L"..\\Resources\\Images\\Monster.bmp");
 	}
 
 	Monster::~Monster()
@@ -36,23 +39,22 @@ namespace ya
 
 	void Monster::Render(HDC hdc)
 	{
-		Image* pImage = Resources::Load<Image>(L"MonsterImage", L"..\\Resources\\Images\\Monster.bmp");
-		//Image* pImage = Resources::Find<Image>(L"PlayerImage");
-
-		if (nullptr == pImage)
+		if (nullptr == mImage)
 			return;
 
 		Vector2 vPos = GetPos();
 		vPos = Camera::CalulatePos(vPos);
-		//BitBlt(hdc, (int)vPos.x - 61, (int)vPos.y - 62, 123, 124, pImage->GetDC(), 0, 0, SRCCOPY);
-		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
-			, (int)vPos.y - pImage->GetHeight() / 2
-			, pImage->GetWidth(), pImage->GetHeight()
-			, pImage->GetDC(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
 
-		//Resource* p = pImage;
-
-		//delete p;
+		BLENDFUNCTION func = {};
+		func.BlendOp = AC_SRC_OVER;
+		func.BlendFlags = 0;
+		func.AlphaFormat = AC_SRC_ALPHA;
+		func.SourceConstantAlpha = 127;
+		
+		AlphaBlend(hdc, (int)vPos.x - mImage->GetWidth() / 2
+			, (int)vPos.y - mImage->GetHeight() / 2
+			, mImage->GetWidth(), mImage->GetHeight()
+			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), func);
 
 		Object::Render(hdc);
 	}

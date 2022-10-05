@@ -3,6 +3,7 @@
 
 namespace ya
 {
+    class Image;
 	class Monster : public Object
 	{
 
@@ -14,7 +15,7 @@ namespace ya
             virtual void Render(HDC hdc) override;
 
         private:
-            float mSpeed;
-            float mShotTime;
+            Image* mImage;
+            
 	};
 }

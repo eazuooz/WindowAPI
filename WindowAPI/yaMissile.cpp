@@ -54,7 +54,7 @@ namespace ya
 		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
 			, (int)vPos.y - pImage->GetHeight() / 2
 			, pImage->GetWidth(), pImage->GetHeight()
-			, pImage->GetDC(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
+			, pImage->GetHdc(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
 
 		Object::Render(hdc);
 	}

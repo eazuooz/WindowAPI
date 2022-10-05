@@ -14,6 +14,7 @@ namespace ya
 		void Tick();
 
 		WindowData& GetWindowData() { return mWindowData; }
+		HDC GetHdc() { return mWindowData.hdc; }
 		HPEN GetPen(ePenColor color) { return mPens[(UINT)color]; }
 		HBRUSH GetBrush(eBrushColor brush) { return mBrushes[(UINT)brush]; }
 		

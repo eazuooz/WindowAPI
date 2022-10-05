@@ -3,13 +3,26 @@
 #include "yaInputManager.h"
 #include "yaTime.h"
 #include "yaObject.h"
+#include "yaImage.h"
 
 namespace ya
 {
-	Size Camera::mResolution = {};		// 화면 해상도
-	Vector2 Camera::mLookPosition = {};  // 카메라가 보고있는 좌표
-	Vector2 Camera::mDistance = {};		// 화면 해상도 중심 좌표와 현재 카메라 Look 간의 차이
+	/// <summary>
+	/// Camera Move
+	/// </summary>
+	Size Camera::mResolution = {};		
+	Vector2 Camera::mLookPosition = {}; 
+	Vector2 Camera::mDistance = {};		
 	Object* Camera::mTarget = nullptr;
+
+	/// <summary>
+	/// Fade in out effect
+	/// </summary>
+	eCameraEffect Camera::mEffect = eCameraEffect::None;
+	Image* Camera::mCutton = nullptr;
+	float Camera::mCuttonAlpha = 1.0f;
+	float Camera::mAlphaTime = 0.0f;
+	float Camera::mEndTime = 5.0f;
 
 	void Camera::Initialize()
 	{
@@ -18,6 +31,8 @@ namespace ya
 		mResolution.x = winData.width;
 		mLookPosition = (mResolution / 2.0f);
 
+		mEffect = eCameraEffect::Fade_In;
+		mCutton = Image::Create(L"Cutton", winData.width, winData.height);
 	}
 	void Camera::Tick()
 	{
@@ -45,7 +60,35 @@ namespace ya
 		if(mTarget != nullptr)
 			mLookPosition = mTarget->GetPos();
 
+		// Alpha 1 -> 0, 5초에 걸쳐서
+		if (mAlphaTime <= 5.f)
+		{
+			mAlphaTime += Time::DeltaTime();
+			float fRatio = (mAlphaTime / mEndTime);	// 제한 시간 대비 진행시간의 비율을 0 ~ 1 사이로 환산
+
+			if (eCameraEffect::Fade_In == mEffect)
+				mCuttonAlpha = 1.f - fRatio;
+			else
+				mCuttonAlpha = fRatio;
+		}
+
 		mDistance = mLookPosition - (mResolution / 2.0f);
+	}
+
+	void Camera::Render(HDC hdc)
+	{
+		BLENDFUNCTION tFunc = {};
+		tFunc.BlendOp = AC_SRC_OVER;
+		tFunc.BlendFlags = 0;
+		tFunc.AlphaFormat = 0;
+		tFunc.SourceConstantAlpha = (BYTE)(255.f * mCuttonAlpha);
+
+		AlphaBlend(hdc, 0, 0
+			, mCutton->GetWidth(), mCutton->GetHeight()
+			, mCutton->GetHdc()
+			, 0, 0
+			, mCutton->GetWidth(), mCutton->GetHeight()
+			, tFunc);
 	}
 
 }
