@@ -17,11 +17,11 @@ namespace ya
 		virtual void Destroy();
 
 		void AddObject(Object* object, eColliderLayer type);
-		const std::vector<std::vector<Object*>>& GetObjects()
+		std::vector<std::vector<Object*>>& GetObjects()
 		{
 			return mObjects;
 		}
-		const std::vector<Object*>& GetObjects(eColliderLayer type)
+		std::vector<Object*>& GetObjects(eColliderLayer type)
 		{
 			return mObjects[(UINT)type];
 		}

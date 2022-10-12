@@ -35,8 +35,9 @@ namespace ya
 		static __forceinline void Release()
 		{
 			Scene* scene = SceneManager::GetPlayScene();
-			SceneObjects objects = scene->GetObjects();
+			SceneObjects& objects = scene->GetObjects();
 
+			std::vector<Object*> deleteObjects;
 			for (size_t y = 0; y < _COLLIDER_LAYER; y++)
 			{
 				for (LayerObjectsIter iter = objects[y].begin()
@@ -44,12 +45,19 @@ namespace ya
 				{
 					if ((*iter)->IsDead() == true)
 					{
+						deleteObjects.push_back(*iter);
 						iter = objects[y].erase(iter);
 						continue;
 					}
 					
 					++iter;
 				}
+			}
+
+			for (Object* object : deleteObjects)
+			{
+				delete object;
+				object = nullptr;
 			}
 		}
 	}
