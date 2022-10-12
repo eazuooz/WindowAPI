@@ -19,12 +19,12 @@ namespace ya
 		: m_fSpeed(400.f)
 	{
 		AddComponent(new Collider());
-		//AddComponent(new Animator());
+		AddComponent(new Animator());
 
-		GetCollider()->SetScale(Vector2(20.f, 20.f));
-		GetCollider()->SetOffset(Vector2(0.f, 0.f));
+		GetComponent<Collider>()->SetScale(Vector2(20.f, 20.f));
+		GetComponent<Collider>()->SetOffset(Vector2(0.f, 0.f));
 
-		Camera::SetTarget(this);
+		//Camera::SetTarget(this);
 	}
 
 	Missile::~Missile()

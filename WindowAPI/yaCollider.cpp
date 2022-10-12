@@ -49,13 +49,16 @@ namespace ya
 	void Collider::OnCollisionEnter(Collider* other)
 	{
 		++mCollisionCount;
+		GetOwner()->OnCollisionEnter(other);
+		
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
-		int a = 0;
+		GetOwner()->OnCollisionStay(other);
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
 		--mCollisionCount;
+		GetOwner()->OnCollisionExit(other);
 	}
 }

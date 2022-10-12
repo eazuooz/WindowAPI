@@ -39,17 +39,17 @@ namespace ya
 
 		for (auto leftObject : lefts)
 		{
-			if (leftObject->GetCollider() == nullptr)
+			if (leftObject->GetComponent<Collider>() == nullptr)
 				continue;
 
 			for (auto rightObject : rights)
 			{
-				if (rightObject->GetCollider() == nullptr)
+				if (rightObject->GetComponent<Collider>() == nullptr)
 					continue;
 				if (rightObject == leftObject)
 					continue;
 
-				ColliderCollision(leftObject->GetCollider(), rightObject->GetCollider());
+				ColliderCollision(leftObject->GetComponent<Collider>(), rightObject->GetComponent<Collider>());
 			}
 
 			if (leftLayer == rightLayer)

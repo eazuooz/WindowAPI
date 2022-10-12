@@ -10,28 +10,25 @@ namespace ya
 	/// <summary>
 	/// Camera Move
 	/// </summary>
-	Size Camera::mResolution = {};		
-	Vector2 Camera::mLookPosition = {}; 
-	Vector2 Camera::mDistance = {};		
+	Size Camera::mResolution = {};
+	Vector2 Camera::mLookPosition = {};
+	Vector2 Camera::mDistance = {};
 	Object* Camera::mTarget = nullptr;
 
 	/// <summary>
 	/// Fade in out effect
 	/// </summary>
-	eCameraEffect Camera::mEffect = eCameraEffect::None;
+	std::queue<Camera::EffectInfo> Camera::mEffectQueue;
 	Image* Camera::mCutton = nullptr;
-	float Camera::mCuttonAlpha = 1.0f;
-	float Camera::mAlphaTime = 0.0f;
-	float Camera::mEndTime = 5.0f;
+	float Camera::mCuttonAlpha = 0.0f;
 
 	void Camera::Initialize()
 	{
 		WindowData winData = Application::GetInstance().GetWindowData();
-		mResolution.y = winData.height; 
+		mResolution.y = winData.height;
 		mResolution.x = winData.width;
 		mLookPosition = (mResolution / 2.0f);
 
-		mEffect = eCameraEffect::Fade_In;
 		mCutton = Image::Create(L"Cutton", winData.width, winData.height);
 	}
 	void Camera::Tick()
@@ -41,36 +38,42 @@ namespace ya
 		{
 			mLookPosition.y -= Time::DeltaTime() * 500.0f;
 		}
-
 		if (KEY_PREESED(KEY_CODE::DOWN))
 		{
 			mLookPosition.y += Time::DeltaTime() * 500.0f;
 		}
-
 		if (KEY_PREESED(KEY_CODE::LEFT))
 		{
 			mLookPosition.x -= Time::DeltaTime() * 500.0f;
 		}
-
 		if (KEY_PREESED(KEY_CODE::RIGHT))
 		{
 			mLookPosition.x += Time::DeltaTime() * 500.0f;
 		}
 
-		if(mTarget != nullptr)
+		if (mTarget != nullptr)
 			mLookPosition = mTarget->GetPos();
 
-		// Alpha 1 -> 0, 5초에 걸쳐서
-		if (mAlphaTime <= 5.f)
+		if (!mEffectQueue.empty())
 		{
-			mAlphaTime += Time::DeltaTime();
-			float fRatio = (mAlphaTime / mEndTime);	// 제한 시간 대비 진행시간의 비율을 0 ~ 1 사이로 환산
+			EffectInfo& info = mEffectQueue.front();
+			info.time += Time::DeltaTime();
+			float ratio = (info.time / info.duration);
 
-			if (eCameraEffect::Fade_In == mEffect)
-				mCuttonAlpha = 1.f - fRatio;
+			if (ratio >= 1.0f)
+			{
+				ratio = 1.0f;
+				mEffectQueue.pop();
+			}
+
+			if (eCameraEffect::Fade_In == info.effect)
+				mCuttonAlpha = 1.0f - ratio;
+			else if (eCameraEffect::Fade_Out == info.effect)
+				mCuttonAlpha = ratio;
 			else
-				mCuttonAlpha = fRatio;
+				mCuttonAlpha = 0.0f;
 		}
+
 
 		mDistance = mLookPosition - (mResolution / 2.0f);
 	}
@@ -81,7 +84,7 @@ namespace ya
 		tFunc.BlendOp = AC_SRC_OVER;
 		tFunc.BlendFlags = 0;
 		tFunc.AlphaFormat = 0;
-		tFunc.SourceConstantAlpha = (BYTE)(255.f * mCuttonAlpha);
+		tFunc.SourceConstantAlpha = (BYTE)(255.0f * mCuttonAlpha);
 
 		AlphaBlend(hdc, 0, 0
 			, mCutton->GetWidth(), mCutton->GetHeight()
@@ -89,6 +92,16 @@ namespace ya
 			, 0, 0
 			, mCutton->GetWidth(), mCutton->GetHeight()
 			, tFunc);
+	}
+
+	void Camera::PushEffect(eCameraEffect effect, float duration)
+	{
+		EffectInfo info = {};
+		info.time = 0.0f;
+		info.effect = effect;
+		info.duration = duration;
+
+		mEffectQueue.push(info);
 	}
 
 }

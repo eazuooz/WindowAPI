@@ -1,5 +1,6 @@
 #include "yaScene.h"
 #include "yaObject.h"
+#include "yaGameObject.h"
 
 namespace ya
 {
@@ -14,7 +15,7 @@ namespace ya
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{
-				if(mObjects[y][x] != nullptr)
+				if (mObjects[y][x] != nullptr)
 					delete mObjects[y][x];
 			}
 		}
@@ -27,8 +28,12 @@ namespace ya
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{
-				if (mObjects[y][x] != nullptr)
-					mObjects[y][x]->Tick();
+				if (mObjects[y][x] == nullptr)
+					continue;
+				if (mObjects[y][x]->IsDead())
+					continue;
+
+				mObjects[y][x]->Tick();
 			}
 		}
 	}
@@ -39,10 +44,19 @@ namespace ya
 		{
 			for (size_t x = 0; x < mObjects[y].size(); ++x)
 			{
-				if (mObjects[y][x] != nullptr)
-					mObjects[y][x]->Render(hdc);
+				if (mObjects[y][x] == nullptr)
+					continue;
+				if (mObjects[y][x]->IsDead())
+					continue;
+
+				mObjects[y][x]->Render(hdc);
 			}
 		}
+	}
+
+	void Scene::Destroy()
+	{
+		gameObject::Release();
 	}
 
 	void Scene::AddObject(Object* object, eColliderLayer type)

@@ -7,6 +7,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <queue>
 
 
 #include "yaMath.h"

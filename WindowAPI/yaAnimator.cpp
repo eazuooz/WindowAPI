@@ -1,16 +1,75 @@
 #include "yaAnimator.h"
+#include "yaAnimation.h"
 
 
 namespace ya
 {
 	Animator::Animator()
 		: Component(eComponentType::Animator)
+		, mPlayAnimation(nullptr)
+		, mbLoop(false)
 	{
 	}
 	Animator::~Animator()
 	{
+		AnimationsIter iter = mAnimations.begin();
+		for (; iter != mAnimations.end(); ++iter)
+		{
+			delete iter->second;
+		}
 	}
 	void Animator::Tick()
 	{
+		if (mPlayAnimation != nullptr)
+		{
+			mPlayAnimation->Tick();
+			if (mbLoop && mPlayAnimation->isComplete())
+			{
+				mPlayAnimation->Reset();
+			}
+		}
+	}
+
+	void Animator::Render(HDC hdc)
+	{
+		if (mPlayAnimation != nullptr)
+		{
+			mPlayAnimation->Render(hdc);
+		}
+	}
+
+	void Animator::CreateAnimaiton(const std::wstring& name, Image* image
+		, Vector2 leftTop, Vector2 size, Vector2 offset
+		, float columnLegth, UINT spriteLength, float duration, bool bAffectedCamera )
+	{
+		Animation* animation = FindAnimation(name);
+		if (animation != nullptr)
+		{
+			MessageBox(nullptr, L"Animation 이름 중복", L"Animation 생성 실패", MB_OK);
+			return;
+		}
+
+		animation = new Animation();
+		animation->Create(image, leftTop, size, offset, columnLegth, spriteLength, duration, bAffectedCamera);
+		animation->SetName(name);
+		animation->SetAnimator(this);
+
+		mAnimations.insert(std::make_pair(name, animation));
+	}
+
+	Animation* Animator::FindAnimation(const std::wstring& name)
+	{
+		AnimationsIter iter = mAnimations.find(name);
+		if (mAnimations.end() == iter)
+			return nullptr;
+		
+		return iter->second;
+	}
+
+	void Animator::Play(const std::wstring& name, bool bLoop)
+	{
+		mPlayAnimation = FindAnimation(name);
+		mPlayAnimation->Reset();
+		mbLoop = bLoop;
 	}
 }

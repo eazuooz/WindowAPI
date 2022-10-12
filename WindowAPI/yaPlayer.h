@@ -3,17 +3,17 @@
 
 namespace ya
 {
-        class Player : public Object
-        {
-        public:
-            Player();
-            ~Player();
+	class Player : public Object
+	{
+	public:
+		Player();
+		~Player();
 
-            virtual void Tick() override;
-            virtual void Render(HDC hdc) override;
+		virtual void Tick() override;
+		//virtual void Render(HDC hdc) override;
 
-        private:
-            float mSpeed;
-            float mShotTime;
-        };
+	private:
+		float mSpeed;
+		float mShotTime;
+	};
 }

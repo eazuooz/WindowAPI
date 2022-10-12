@@ -10,9 +10,8 @@ namespace ya
 	void SceneManager::Initialize()
 	{
 		mScenes[Logo] = new LogoScene();
-		mScenes[Logo]->Initialize();
-
 		mPlayScene = mScenes[Logo];
+		mScenes[Logo]->Initialize();
 	}
 
 	void SceneManager::Release()
@@ -32,5 +31,9 @@ namespace ya
 	void SceneManager::Render(HDC hdc)
 	{
 		mPlayScene->Render(hdc);
+	}
+	void SceneManager::Destroy()
+	{
+		mPlayScene->Destroy();
 	}
 }

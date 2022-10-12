@@ -16,10 +16,19 @@ namespace ya
 	class Camera
 	{
 	public:
+		struct EffectInfo
+		{
+			eCameraEffect effect;
+			float duration;
+			float time;
+		};
+
+	public:
 		static void Initialize();
 		static void Tick();
 		static void Render(HDC hdc);
 
+		static void PushEffect(eCameraEffect effect, float duration);
 		static Vector2 CalulatePos(Vector2 pos) { return pos - mDistance; }
 		static void SetTarget(Object* object) { mTarget = object; }
 
@@ -33,11 +42,8 @@ namespace ya
 		static Vector2 mDistance;		// 화면 해상도 중심 좌표와 현재 카메라 Look 간의 차이
 		static Object* mTarget;
 		
-		static eCameraEffect mEffect;
+		static std::queue<EffectInfo> mEffectQueue;
 		static Image* mCutton;
 		static float mCuttonAlpha;
-		static float mAlphaTime;
-		static float mEndTime;
-
 	};
 }

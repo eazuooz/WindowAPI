@@ -11,6 +11,7 @@ namespace ya
 		static void Release();
 		static void Tick();
 		static void Render(HDC hdc);
+		static void Destroy();
 
 		static inline Scene* GetPlayScene() { return mPlayScene; }
 

@@ -23,8 +23,18 @@ namespace ya
 		AddComponent(new Collider());
 		AddComponent(new Animator());
 
-		GetCollider()->SetScale(Vector2(50.f, 50.f));
-		GetCollider()->SetOffset(Vector2(0.f, 25.f));
+		GetComponent<Collider>()->SetScale(Vector2(50.0f, 50.0f));
+		GetComponent<Collider>()->SetOffset(Vector2(0.0f, 25.0f));
+
+		Image* pImage
+			= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\link.bmp");
+		Animator* animator = GetComponent<Animator>();
+		animator->CreateAnimaiton(L"Walk_Up", pImage, Vector2(0.f, 780.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
+		animator->CreateAnimaiton(L"Walk_Down", pImage, Vector2(0.f, 520.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
+		animator->CreateAnimaiton(L"Walk_Left", pImage, Vector2(0.f, 650.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
+		animator->CreateAnimaiton(L"Walk_Right", pImage, Vector2(0.f, 910.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
+
+		animator->Play(L"Walk_Down", true);
 	}
 
 	Player::~Player()
@@ -33,7 +43,7 @@ namespace ya
 
 	void Player::Tick()
 	{
-		
+
 
 		// 키입력에 따른 이동
 		Vector2 vPos = GetPos();
@@ -59,10 +69,22 @@ namespace ya
 			vPos.x += mSpeed * Time::DeltaTime();
 		}
 
+		if (KEY_DOWN(KEY_CODE::W))
+			GetComponent<Animator>()->Play(L"Walk_Up", true);
+		if (KEY_DOWN(KEY_CODE::S))
+			GetComponent<Animator>()->Play(L"Walk_Down", true);
+		if (KEY_DOWN(KEY_CODE::A))
+			GetComponent<Animator>()->Play(L"Walk_Left", true);
+		if (KEY_DOWN(KEY_CODE::D))
+			GetComponent<Animator>()->Play(L"Walk_Right", true);
+
+
 		if (KEY_PREESED(KEY_CODE::SPACE))
 		{
 			if (mShotTime >= 0.1f)
 			{
+				//Missile* misile = Instantiate<Missile>();
+
 				// 미사일 쏘기
 				Scene* pCurScene = SceneManager::GetPlayScene();
 				Missile* pMissile = new Missile();
@@ -77,27 +99,24 @@ namespace ya
 		}
 		mShotTime += Time::DeltaTime();
 
-
-		
 		SetPos(vPos);
-
 		Object::Tick();
 	}
 
-	void Player::Render(HDC hdc)
-	{
-		Image* pImage 
-			= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
-		if (nullptr == pImage)
-			return;
+	//void Player::Render(HDC hdc)
+	//{
+	//	Image* pImage 
+	//		= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
+	//	if (nullptr == pImage)
+	//		return;
 
-		Vector2 vPos = GetPos();
-		vPos = Camera::CalulatePos(vPos);
-		TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
-			, (int)vPos.y - pImage->GetHeight() / 2
-			, pImage->GetWidth(), pImage->GetHeight()
-			, pImage->GetHdc(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
+	//	Vector2 vPos = GetPos();
+	//	vPos = Camera::CalulatePos(vPos);
+	//	TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
+	//		, (int)vPos.y - pImage->GetHeight() / 2
+	//		, pImage->GetWidth(), pImage->GetHeight()
+	//		, pImage->GetHdc(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
 
-		Object::Render(hdc);
-	}
+	//	Object::Render(hdc);
+	//}
 }

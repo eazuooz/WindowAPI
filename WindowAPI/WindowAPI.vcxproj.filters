@@ -38,6 +38,12 @@
     <Filter Include="Component\Base">
       <UniqueIdentifier>{1f99fafb-1eb8-453c-974c-078f8c9bd97c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{e435fb53-dcec-43d9-bd51-9412d3b489df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{14c6cd2e-bfd1-4d12-b989-b627e0dfb079}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -82,12 +88,6 @@
     <ClInclude Include="yaApplication.h">
       <Filter>High Level Interface</Filter>
     </ClInclude>
-    <ClInclude Include="yaCollider.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="yaAnimator.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="yaMonster.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -121,6 +121,18 @@
     <ClInclude Include="yaCamera.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="yaGameObject.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="yaAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="yaAnimation.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -146,12 +158,6 @@
     </ClCompile>
     <ClCompile Include="yaImage.cpp">
       <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="yaCollider.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="yaAnimator.cpp">
-      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="yaMonster.cpp">
       <Filter>Object</Filter>
@@ -185,6 +191,15 @@
     </ClCompile>
     <ClCompile Include="yaCamera.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="yaAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="yaAnimation.cpp">
+      <Filter>Component\Animator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

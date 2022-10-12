@@ -98,6 +98,9 @@ namespace ya
 		// BitBlt 함수는 DC 간에 그림을 복사하는 함수입니다. 
 		BitBlt(mWindowData.hdc, 0, 0, mWindowData.width, mWindowData.height
 			, mWindowData.backBuffer, 0, 0, SRCCOPY);
+
+		// 파괴
+		SceneManager::Destroy();
 	}
 	void Application::createDefaultGDIObject()
 	{

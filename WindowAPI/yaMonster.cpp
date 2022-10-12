@@ -6,6 +6,7 @@
 #include "yaApplication.h"
 #include "yaResources.h"
 #include "yaImage.h"
+#include "yaGameObject.h"
 
 #include "yaCollider.h"
 #include "yaAnimator.h"
@@ -21,8 +22,8 @@ namespace ya
 		AddComponent(new Collider());
 		AddComponent(new Animator());
 
-		GetCollider()->SetScale(Vector2(200.f, 100.f));
-		GetCollider()->SetOffset(Vector2(0.f, 0.f));
+		GetComponent<Collider>()->SetScale(Vector2(200.f, 100.f));
+		GetComponent<Collider>()->SetOffset(Vector2(0.f, 0.f));
 
 		mImage = Resources::Load<Image>(L"MonsterImage", L"..\\Resources\\Images\\Monster.bmp");
 	}
@@ -57,5 +58,20 @@ namespace ya
 			, mImage->GetHdc(), 0, 0, mImage->GetWidth(), mImage->GetHeight(), func);
 
 		Object::Render(hdc);
+	}
+	void Monster::OnCollisionEnter(Collider* other)
+	{
+		if (dynamic_cast<Missile*>(other->GetOwner()))
+		{
+			gameObject::Destroy(this);
+		}
+	}
+	void Monster::OnCollisionStay(Collider* other)
+	{
+
+	}
+	void Monster::OnCollisionExit(Collider* other)
+	{
+
 	}
 }
