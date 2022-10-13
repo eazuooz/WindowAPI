@@ -16,6 +16,11 @@
 
 namespace ya
 {
+	void test()
+	{
+
+	}
+
 	Player::Player()
 		: mSpeed(100.0f)
 		, mShotTime(0.0f)
@@ -33,6 +38,10 @@ namespace ya
 		animator->CreateAnimaiton(L"Walk_Down", pImage, Vector2(0.f, 520.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
 		animator->CreateAnimaiton(L"Walk_Left", pImage, Vector2(0.f, 650.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
 		animator->CreateAnimaiton(L"Walk_Right", pImage, Vector2(0.f, 910.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
+
+		animator->mStartEvent = std::bind(&Player::AnimationStart, this);
+		animator->mCompleteEvent = std::bind(&Player::AnimationComplete, this);
+		animator->mEndEvent = std::bind(&Player::AnimationEnd, this);
 
 		animator->Play(L"Walk_Down", true);
 	}

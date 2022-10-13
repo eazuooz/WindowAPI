@@ -8,7 +8,8 @@
 #include <list>
 #include <map>
 #include <queue>
-
+#include <functional>
+#include <memory>
 
 #include "yaMath.h"
 #include "def.h"

@@ -12,6 +12,10 @@ namespace ya
 		virtual void Tick() override;
 		//virtual void Render(HDC hdc) override;
 
+		void AnimationStart() {}
+		void AnimationComplete() {}
+		void AnimationEnd() {}
+
 	private:
 		float mSpeed;
 		float mShotTime;

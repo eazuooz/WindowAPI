@@ -25,6 +25,7 @@ namespace ya
 			mPlayAnimation->Tick();
 			if (mbLoop && mPlayAnimation->isComplete())
 			{
+				mCompleteEvent();
 				mPlayAnimation->Reset();
 			}
 		}
@@ -68,8 +69,14 @@ namespace ya
 
 	void Animator::Play(const std::wstring& name, bool bLoop)
 	{
+		mStartEvent();
+
+		Animation* prevAnimation = mPlayAnimation;
 		mPlayAnimation = FindAnimation(name);
 		mPlayAnimation->Reset();
 		mbLoop = bLoop;
+
+		if (prevAnimation != mPlayAnimation)
+			mEndEvent();
 	}
 }
