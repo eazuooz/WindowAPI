@@ -25,8 +25,6 @@
 
 namespace ya
 {
-	using Pos = POINT;
-
 	struct WindowData
 	{
 		HWND hWnd;

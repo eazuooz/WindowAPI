@@ -19,7 +19,7 @@ namespace ya
 		: m_fSpeed(400.f)
 	{
 		AddComponent(new Collider());
-		AddComponent(new Animator());
+		//AddComponent(new Animator());
 
 		GetComponent<Collider>()->SetScale(Vector2(20.f, 20.f));
 		GetComponent<Collider>()->SetOffset(Vector2(0.f, 0.f));
@@ -35,8 +35,19 @@ namespace ya
 	void Missile::Tick()
 	{
 		Vector2 vPos = GetPos();
-		vPos.y -= m_fSpeed * Time::DeltaTime();
+		//vPos.y -= m_fSpeed * Time::DeltaTime();
+
+		//vPos.x += m_fSpeed * cosf(m_fDir) * DT;
+		//vPos.y -= m_fSpeed * sinf(m_fDir) * DT;
+
+		//pMissile->SetDir(PI / 4.f);
+		m_vDir = Vector2(0.f, 1.f);
+
+		vPos.x += m_fSpeed * m_vDir.x * Time::DeltaTime();
+		vPos.y += m_fSpeed * m_vDir.y * Time::DeltaTime();
+
 		SetPos(vPos);
+
 
 		Object::Tick();
 	}

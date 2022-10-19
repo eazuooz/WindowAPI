@@ -47,13 +47,7 @@ namespace ya
 		std::vector<Sprite> mSpriteSheet;
 		int mSpriteIndex;
 		float mTime;
-		bool mbStart;
 		bool mbComplete;
-		bool mbEnd;
 		bool mbAffectedCamera;
-
-
-
-
 	};
 }

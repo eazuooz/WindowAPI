@@ -41,7 +41,6 @@ namespace ya
 			{
 				mSpriteIndex += 1;
 			}
-
 		}
 	}
 
