@@ -25,6 +25,7 @@ namespace ya
 		GetComponent<Collider>()->SetOffset(Vector2(0.f, 0.f));
 
 		//Camera::SetTarget(this);
+		m_vDir = Vector2(0.0f, 1.0f);
 	}
 
 	Missile::~Missile()
@@ -41,10 +42,13 @@ namespace ya
 		//vPos.y -= m_fSpeed * sinf(m_fDir) * DT;
 
 		//pMissile->SetDir(PI / 4.f);
-		m_vDir = Vector2(0.f, 1.f);
+		//m_vDir = Vector2(0.0f, 1.0f);
+		m_vDir = ya::math::Rotate(m_vDir, 1.0f);
+
 
 		vPos.x += m_fSpeed * m_vDir.x * Time::DeltaTime();
 		vPos.y += m_fSpeed * m_vDir.y * Time::DeltaTime();
+
 
 		SetPos(vPos);
 

@@ -44,6 +44,9 @@
     <Filter Include="Component\Animator">
       <UniqueIdentifier>{14c6cd2e-bfd1-4d12-b989-b627e0dfb079}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component\Rigidbody">
+      <UniqueIdentifier>{c929bcba-b655-43f2-87af-caf336954c12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -133,6 +136,9 @@
     <ClInclude Include="yaAnimation.h">
       <Filter>Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="yaRigidbody.h">
+      <Filter>Component\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -200,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="yaAnimation.cpp">
       <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRigidbody.cpp">
+      <Filter>Component\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

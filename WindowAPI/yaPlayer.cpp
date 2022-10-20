@@ -11,6 +11,7 @@
 #include "yaCollider.h"
 #include "yaAnimator.h"
 #include "yaCamera.h"
+#include "yaRigidbody.h"
 
 #include "yaMissile.h"
 
@@ -27,6 +28,7 @@ namespace ya
 	{
 		AddComponent(new Collider());
 		AddComponent(new Animator());
+		AddComponent(new Rigidbody());
 
 		GetComponent<Collider>()->SetScale(Vector2(50.0f, 50.0f));
 		GetComponent<Collider>()->SetOffset(Vector2(0.0f, 25.0f));
@@ -60,22 +62,22 @@ namespace ya
 		// 시간 동기화
 		if (KEY_PREESED(KEY_CODE::W))
 		{
-			vPos.y -= mSpeed * Time::DeltaTime();
+			GetComponent<Rigidbody>()->AddForce(Vector2(0.0f, -200.0f));
 		}
 
 		if (KEY_PREESED(KEY_CODE::S))
 		{
-			vPos.y += mSpeed * Time::DeltaTime();
+			GetComponent<Rigidbody>()->AddForce(Vector2(0.0f, 200.0f));
 		}
 
 		if (KEY_PREESED(KEY_CODE::A))
 		{
-			vPos.x -= mSpeed * Time::DeltaTime();
+			GetComponent<Rigidbody>()->AddForce(Vector2(-200.0f, 0.0f));
 		}
 
 		if (KEY_PREESED(KEY_CODE::D))
 		{
-			vPos.x += mSpeed * Time::DeltaTime();
+			GetComponent<Rigidbody>()->AddForce(Vector2(200.0f, 0.0f));
 		}
 
 		if (KEY_DOWN(KEY_CODE::W))

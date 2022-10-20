@@ -44,6 +44,7 @@ enum class eComponentType
 {
 	Collider,
 	Animator,
+	Rigidbody,
 	Gravity,
 	End,
 };

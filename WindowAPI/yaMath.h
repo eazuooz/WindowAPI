@@ -38,6 +38,15 @@ namespace ya
             return temp;
         }
 
+        Vector2 operator*(const float& value)
+        {
+            Vector2 temp;
+            temp.x = x * value;
+            temp.y = y * value;
+
+            return temp;
+        }
+        
         Vector2 operator/(const float& value)
         {
             Vector2 temp;
@@ -46,6 +55,9 @@ namespace ya
 
             return temp;
         }
+
+
+
 
         Vector2& operator +=(const Vector2 other)
         {
@@ -74,6 +86,12 @@ namespace ya
             , y(pArray[1])
         {
 
+        }
+
+        void clear()
+        {
+            x = 0.0f;
+            y = 0.0f;
         }
 
         float Length()
@@ -106,15 +124,6 @@ namespace ya::math
 
         return Vector2(x, y);
     }
-
-    //Vector2 Rotate(Vector2 vector, float radian)
-    //{
-    //    vector.Normalize();
-    //    float x = cosf(radian) * vector.x - sinf(radian) * vector.y;
-    //    float y = sinf(radian) * vector.x + cosf(radian) * vector.y;
-
-    //    return Vector2(x, y);
-    //}
 
     inline float Dot(Vector2& v1, Vector2& v2)
     {
