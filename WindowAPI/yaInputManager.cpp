@@ -1,5 +1,5 @@
 #include "yaInputManager.h"
-
+#include "yaApplication.h"
 
 namespace ya
 {
@@ -43,29 +43,52 @@ namespace ya
 
 	void InputManager::Tick()
 	{
-		for (UINT i = 0; i < (UINT)KEY_CODE::END; ++i)
+		if (GetFocus())
 		{
-			// 해당키가 현재 눌려있다.
-			if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+			//KEY
+			for (UINT i = 0; i < (UINT)KEY_CODE::END; ++i)
 			{
-				// 이전 프레임에도 눌려 있었다.
-				if (mKeys[i].bPressed)
-					mKeys[i].eState = KEY_STATE::PRESSED;
-				else
-					mKeys[i].eState = KEY_STATE::DOWN;
-				
-				mKeys[i].bPressed = true;
+				// 해당키가 현재 눌려있다.
+				if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+				{
+					// 이전 프레임에도 눌려 있었다.
+					if (mKeys[i].bPressed)
+						mKeys[i].eState = KEY_STATE::PRESSED;
+					else
+						mKeys[i].eState = KEY_STATE::DOWN;
+
+					mKeys[i].bPressed = true;
+				}
+				else // 해당키가 현재 안눌려있다.
+				{
+					// 이전 프레임에는 눌려 있었다.
+					if (mKeys[i].bPressed)
+						mKeys[i].eState = KEY_STATE::UP;
+					else // 이전 프레임에도 안눌려 있었다.
+						mKeys[i].eState = KEY_STATE::NONE;
+
+					mKeys[i].bPressed = false;
+				}
 			}
-			else // 해당키가 현재 안눌려있다.
+			
+			POINT mousePos = {};
+			GetCursorPos(&mousePos);
+			ScreenToClient(Application::GetInstance().GetWindowData().hWnd, &mousePos);
+			mMousPosition.x = mousePos.x;
+			mMousPosition.y = mousePos.y;
+		}
+		else
+		{
+			for (UINT i = 0; i < (UINT)KEY_CODE::END; ++i)
 			{
-				// 이전 프레임에는 눌려 있었다.
-				if (mKeys[i].bPressed)
+				if (KEY_STATE::DOWN == mKeys[i].eState || KEY_STATE::PRESSED == mKeys[i].eState)
 					mKeys[i].eState = KEY_STATE::UP;
-				else // 이전 프레임에도 안눌려 있었다.
+				else if (KEY_STATE::UP == mKeys[i].eState)
 					mKeys[i].eState = KEY_STATE::NONE;
 
 				mKeys[i].bPressed = false;
 			}
 		}
+
 	}
 }

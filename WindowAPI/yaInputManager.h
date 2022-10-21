@@ -55,11 +55,17 @@ namespace ya
 			return mKeys[static_cast<UINT>(keyCode)].eState; 
 		}
 
+		static __forceinline Vector2 GetMousPosition()
+		{
+			return mMousPosition;
+		}
+
 	private:
 		InputManager() = delete;
 		~InputManager() = delete;
 
 	private:
 		static std::vector<Key> mKeys;
+		static Vector2 mMousPosition;
 	};
 }
