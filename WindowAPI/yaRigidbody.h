@@ -18,9 +18,18 @@ namespace ya
 
 	private:
 		float mMass;
+		
+		float mFriction;
+		float mStaticFriction;
+		float mKineticFriction;
+		float mCoefficientFriction;
+		
+		float mNormalForce;
+
 		Vector2 mForce;
 		Vector2 mAccelation;
 		Vector2 mVelocity;
+		Vector2 mGravity;
 	};
 }
 

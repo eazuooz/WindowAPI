@@ -173,6 +173,7 @@
     <ClCompile Include="yaEntity.cpp" />
     <ClCompile Include="yaInputManager.cpp" />
     <ClCompile Include="yaLogoScene.cpp" />
+    <ClCompile Include="yaMath.cpp" />
     <ClCompile Include="yaMissile.cpp" />
     <ClCompile Include="yaMonster.cpp" />
     <ClCompile Include="yaObject.cpp" />

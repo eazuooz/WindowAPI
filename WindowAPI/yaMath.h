@@ -9,6 +9,8 @@ namespace ya
 {
     struct Vector2
     {
+        static Vector2 Zero;
+
         float x;
         float y;
 
@@ -19,6 +21,11 @@ namespace ya
 
         Vector2(Vector2&&) = default;
         Vector2& operator=(Vector2&&) = default;
+
+        Vector2 operator -()
+        {
+            return Vector2(-x, -y);
+        }
 
         Vector2 operator+(const Vector2& other)
         {
@@ -38,6 +45,15 @@ namespace ya
             return temp;
         }
 
+        Vector2 operator*(const Vector2& other)
+        {
+            Vector2 temp;
+            temp.x = x * other.x;
+            temp.y = y * other.y;
+
+            return temp;
+        }
+
         Vector2 operator*(const float& value)
         {
             Vector2 temp;
@@ -50,16 +66,14 @@ namespace ya
         Vector2 operator/(const float& value)
         {
             Vector2 temp;
+
             temp.x = x / value;
             temp.y = y / value;
 
             return temp;
         }
 
-
-
-
-        Vector2& operator +=(const Vector2 other)
+        Vector2& operator +=(const Vector2& other)
         {
             x += other.x;
             y += other.y;
@@ -67,13 +81,22 @@ namespace ya
             return *this;
         }
 
-        Vector2& operator -=(const Vector2 other)
+        Vector2& operator -=(const Vector2& other)
         {
             x -= other.x;
             y -= other.y;
 
             return *this;
         }
+
+        bool operator ==(const Vector2& other)
+        {
+            return (x == other.x && y == other.y);
+        }
+        //bool operator !=(const Vector2& other)
+        //{
+        //    return (x != other.x && y != other.y);
+        //}
 
         constexpr Vector2(float _x, float _y) noexcept
             : x(_x)
@@ -108,10 +131,12 @@ namespace ya
             return *this;
         }
     };
-
     typedef Vector2 Pos;
     typedef Vector2 Size;
+
+    inline Vector2 Vector2::Zero = Vector2(0.0f, 0.0f);
 }
+
 
 namespace ya::math
 {
