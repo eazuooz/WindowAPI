@@ -7,6 +7,7 @@ namespace ya
 	class Rigidbody : public Component
 	{
 	public:
+		Rigidbody(Rigidbody& other) = default;
 		Rigidbody();
 		~Rigidbody();
 

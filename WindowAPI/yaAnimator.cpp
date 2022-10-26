@@ -4,6 +4,20 @@
 
 namespace ya
 {
+	Animator::Animator(Animator& other)
+		: Component(other)
+		, mPlayAnimation(nullptr)
+		, mbLoop(false)
+	{
+		//AnimationsIter iter = other.mAnimations.begin();
+		for (AnimationPair animationPair : other.mAnimations)
+		{
+			Animation* animation = new Animation(*(animationPair.second));
+			animation->SetAnimator(this);
+			mAnimations.insert(std::make_pair(animationPair.first, animation));
+		}
+	}
+
 	Animator::Animator()
 		: Component(eComponentType::Animator)
 		, mPlayAnimation(nullptr)

@@ -8,6 +8,7 @@ namespace ya
 	{
 	public:
 		friend class Object;
+		Component(Component& other);
 		Component(eComponentType type);
 		~Component();
 

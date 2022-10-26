@@ -22,6 +22,7 @@ namespace ya
 		};
 
 	public:
+		Animator(Animator& other);
 		Animator();
 		~Animator();
 
@@ -46,4 +47,5 @@ namespace ya
 	};
 
 	typedef std::map<std::wstring, Animation*>::iterator AnimationsIter;
+	typedef std::pair<std::wstring, Animation*> AnimationPair;
 }

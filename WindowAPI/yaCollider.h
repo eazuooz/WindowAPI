@@ -7,6 +7,7 @@ namespace ya
 	class Collider : public Component
 	{
 	public:
+		Collider(Collider& other);
 		Collider();
 		~Collider();
 

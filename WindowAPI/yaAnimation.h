@@ -28,6 +28,7 @@ namespace ya
 		};
 
 	public:
+		Animation(Animation& other) = default;
 		Animation();
 		~Animation();
 		

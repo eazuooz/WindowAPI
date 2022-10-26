@@ -4,6 +4,7 @@
 namespace ya
 {
 	std::vector<InputManager::Key> InputManager::mKeys;
+	Vector2 InputManager::mMousPosition;
 	int ASCII[(UINT)KEY_CODE::END] =
 	{
 		//Alphabet

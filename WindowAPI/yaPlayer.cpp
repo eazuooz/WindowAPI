@@ -35,6 +35,7 @@ namespace ya
 
 		Image* pImage
 			= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\link.bmp");
+		
 		Animator* animator = GetComponent<Animator>();
 		animator->CreateAnimaiton(L"Walk_Up", pImage, Vector2(0.f, 780.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
 		animator->CreateAnimaiton(L"Walk_Down", pImage, Vector2(0.f, 520.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
@@ -54,8 +55,6 @@ namespace ya
 
 	void Player::Tick()
 	{
-
-
 		// 키입력에 따른 이동
 		Vector2 vPos = GetPos();
 

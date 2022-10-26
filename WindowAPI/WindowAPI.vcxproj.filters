@@ -124,9 +124,6 @@
     <ClInclude Include="yaCamera.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="yaGameObject.h">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="yaCollider.h">
       <Filter>Component\Collider</Filter>
     </ClInclude>
@@ -138,6 +135,9 @@
     </ClInclude>
     <ClInclude Include="yaRigidbody.h">
       <Filter>Component\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGameObject.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

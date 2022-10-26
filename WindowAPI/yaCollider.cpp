@@ -6,16 +6,28 @@
 
 namespace ya
 {
+	Collider::Collider(Collider& other)
+		: Component(other)
+		, mOffset{ other.mOffset }
+		, mScale{ other.mScale }
+		, mPos{ other.mPos }
+		, mCollisionCount(0)
+	{
 
+	}
 	Collider::Collider()
 		: Component(eComponentType::Collider)
+		, mOffset{ Vector2::Zero }
+		, mScale{ Vector2::Zero }
+		, mPos{ Vector2::Zero }
+		, mCollisionCount(0)
 	{
 
 	}
 
 	Collider::~Collider()
 	{
-		
+
 	}
 
 	void Collider::Tick()
@@ -37,7 +49,7 @@ namespace ya
 
 		Brush brush(hdc, Application::GetInstance().GetBrush(eBrushColor::Transparent));
 
-		
+
 		Vector2 pos = Camera::CalulatePos(mPos);
 
 		Rectangle(hdc, (int)(pos.x - mScale.x / 2.f)
@@ -50,7 +62,7 @@ namespace ya
 	{
 		++mCollisionCount;
 		GetOwner()->OnCollisionEnter(other);
-		
+
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{

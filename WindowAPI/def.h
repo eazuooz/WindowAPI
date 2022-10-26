@@ -10,6 +10,8 @@ private:\
 	type();\
 	~type();
 
+
+
 #define KEY_PREESED(KEY) ya::KEY_STATE::PRESSED == ya::InputManager::GetKeyState(KEY)
 #define KEY_DOWN(KEY) ya::KEY_STATE::DOWN == ya::InputManager::GetKeyState(KEY)
 #define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetKeyState(KEY)
@@ -45,7 +47,6 @@ enum class eComponentType
 	Collider,
 	Animator,
 	Rigidbody,
-	Gravity,
 	End,
 };
 

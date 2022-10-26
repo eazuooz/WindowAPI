@@ -10,12 +10,14 @@ namespace ya
 	class Object : public Entity
 	{
 	public:
+		Object(Object& other);
 		Object();
 		~Object();
 
 		virtual void Tick();
 		virtual void Render(HDC hdc);
 
+		Component* CreateComponent(Component* component);
 		void AddComponent(Component* component);
 	
 		virtual void OnCollisionEnter(Collider* other) {};

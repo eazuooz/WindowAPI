@@ -17,6 +17,7 @@ namespace ya
 
 			return gameObject;
 		}
+		
 		template <typename T>
 		static __forceinline T* Instantiate(eColliderLayer type)
 		{
@@ -25,6 +26,16 @@ namespace ya
 			playScene->AddObject(dynamic_cast<Object*>(gameObject), type);
 
 			return gameObject;
+		}
+
+		template <typename T>
+		static __forceinline T* Instantiate(T* gameObject, eColliderLayer type)
+		{
+			T* newObject = new T(*gameObject);
+			Scene* playScene = SceneManager::GetPlayScene();
+			playScene->AddObject(dynamic_cast<Object*>(newObject), type);
+
+			return newObject;
 		}
 
 		static __forceinline void Destroy(Object* object)
