@@ -1,17 +1,25 @@
 #include "yaSceneManager.h"
 #include "yaScene.h"
 #include "yaLogoScene.h"
+#include "yaToolScene.h"
+
 
 namespace ya
 {
 	Scene* SceneManager::mScenes[eSceneType::End] = {};
 	Scene* SceneManager::mPlayScene = nullptr;
+	eSceneType SceneManager::mSceneType = eSceneType::Logo;
 
 	void SceneManager::Initialize()
 	{
 		mScenes[Logo] = new LogoScene();
-		mPlayScene = mScenes[Logo];
+		SceneManager::SceneChange(Logo);
+		
 		mScenes[Logo]->Initialize();
+
+		mScenes[Tool] = new ToolScene();
+		SceneManager::SceneChange(Tool);
+		mScenes[Tool]->Initialize();
 	}
 
 	void SceneManager::Release()
@@ -35,5 +43,17 @@ namespace ya
 	void SceneManager::Destroy()
 	{
 		mPlayScene->Destroy();
+	}
+	void SceneManager::SceneChange(eSceneType type)
+	{
+		if (nullptr != mPlayScene)
+		{
+			mPlayScene->Exit();
+		}
+
+		mPlayScene = mScenes[type];
+		mSceneType = type;
+
+		mPlayScene->Enter();
 	}
 }

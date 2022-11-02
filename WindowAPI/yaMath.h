@@ -81,6 +81,14 @@ namespace ya
             return *this;
         }
 
+        Vector2& operator *=(const float value)
+        {
+            x *= value;
+            y *= value;
+
+            return *this;
+        }
+
         Vector2& operator -=(const Vector2& other)
         {
             x -= other.x;

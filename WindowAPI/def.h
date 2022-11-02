@@ -17,12 +17,16 @@ private:\
 #define KEY_UP(KEY) ya::KEY_STATE::UP == ya::InputManager::GetKeyState(KEY)
 
 #define _COLLIDER_LAYER 16
+#define TILE_SIZE 64
+#define TILE_LINE_Y 6
+#define TILE_LINE_X 8
 
 enum eSceneType
 {
 	Logo,
 	Start,
 	Stage_01,
+	Tool,
 	End,
 };
 
@@ -73,4 +77,17 @@ union ColliderID
 		UINT32 right;
 	};
 	UINT64 ID;
+
+	ColliderID()
+	{
+
+	}
+
+	ColliderID(int x, int y)
+	{
+		left = x;
+		right = y;
+	}
 };
+typedef ColliderID TileID;
+

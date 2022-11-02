@@ -1,5 +1,8 @@
 #pragma once
+#include "framework.h"
+#include "Client.h"
 #include "Common.h"
+
 // 우리의 메인 프로그램
 // Singleton patten
 
@@ -13,8 +16,12 @@ namespace ya
 		bool InitializeWindow(WindowData& data);
 		void Tick();
 
-		WindowData& GetWindowData() { return mWindowData; }
-		HDC GetHdc() { return mWindowData.hdc; }
+		void SetMenuBar(bool power);
+		void SetAtlasWindow(WindowData data) { mAtlasWindow = data; }
+
+		WindowData& GetWindowData() { return mWindow; }
+		WindowData& GetAtlasWindowData() { return mAtlasWindow; }
+		HDC GetHdc() { return mWindow.hdc; }
 		HPEN GetPen(ePenColor color) { return mPens[(UINT)color]; }
 		HBRUSH GetBrush(eBrushColor brush) { return mBrushes[(UINT)brush]; }
 		
@@ -24,8 +31,11 @@ namespace ya
 	private:
 		static int mIsStatic;
 		
-		WindowData mWindowData;
+		WindowData mWindow;
+		WindowData mAtlasWindow;
+
 		HPEN mPens[(UINT)ePenColor::End];
 		HBRUSH mBrushes[(UINT)eBrushColor::End];
+		HMENU mMenuBar;
 	};
 }

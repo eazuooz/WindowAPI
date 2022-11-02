@@ -1,6 +1,7 @@
 #include "yaScene.h"
 #include "yaObject.h"
 #include "yaGameObject.h"
+#include "yaCollisionManager.h"
 
 namespace ya
 {
@@ -57,6 +58,16 @@ namespace ya
 	void Scene::Destroy()
 	{
 		gameObject::Release();
+	}
+
+	void Scene::Enter()
+	{
+
+	}
+
+	void Scene::Exit()
+	{
+		CollisionManager::clear();
 	}
 
 	void Scene::AddObject(Object* object, eColliderLayer type)

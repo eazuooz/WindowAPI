@@ -47,6 +47,15 @@
     <Filter Include="Component\Rigidbody">
       <UniqueIdentifier>{c929bcba-b655-43f2-87af-caf336954c12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Contents">
+      <UniqueIdentifier>{6fc8cb77-3fde-4b7d-8655-d7305a6637a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Contents\Map">
+      <UniqueIdentifier>{03c3ce0e-5100-47e7-ab62-d1c7699ff447}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Contents\Unit">
+      <UniqueIdentifier>{ee4c92d5-34ea-4b03-9984-14f5346f2210}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -76,23 +85,14 @@
     <ClInclude Include="yaLogoScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="yaPlayer.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="yaResource.h">
       <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="yaMissile.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="yaImage.h">
       <Filter>Resource</Filter>
     </ClInclude>
     <ClInclude Include="yaApplication.h">
       <Filter>High Level Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="yaMonster.h">
-      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="yaObject.h">
       <Filter>Object\Base</Filter>
@@ -139,6 +139,24 @@
     <ClInclude Include="yaGameObject.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="yaToolScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTile.h">
+      <Filter>Object\Contents\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMissile.h">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMonster.h">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayer.h">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTilePalette.h">
+      <Filter>Object\Contents\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -153,20 +171,11 @@
     <ClCompile Include="yaLogoScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="yaPlayer.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="yaResource.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="yaMissile.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="yaImage.cpp">
       <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="yaMonster.cpp">
-      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="yaObject.cpp">
       <Filter>Object\Base</Filter>
@@ -212,6 +221,24 @@
     </ClCompile>
     <ClCompile Include="yaMath.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="yaToolScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTile.cpp">
+      <Filter>Object\Contents\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMissile.cpp">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMonster.cpp">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayer.cpp">
+      <Filter>Object\Contents\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTilePalette.cpp">
+      <Filter>Object\Contents\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

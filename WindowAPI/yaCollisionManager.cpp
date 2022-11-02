@@ -129,6 +129,7 @@ namespace ya
 	void CollisionManager::clear()
 	{
 		memset(mMatrix, 0, sizeof(WORD) * _COLLIDER_LAYER);
+		mCollisionInfomations.clear();
 	}
 
 	void CollisionManager::SetLayer(eColliderLayer left, eColliderLayer right, bool value)

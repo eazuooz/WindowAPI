@@ -1,11 +1,14 @@
 #pragma once
 #include "framework.h"
 
+#include <commdlg.h>
 #include <assert.h>
 #include <bitset>
 #include <string>
 #include <vector>
 #include <list>
+#include <unordered_set>
+#include <unordered_map>
 #include <map>
 #include <queue>
 #include <functional>
@@ -29,8 +32,10 @@ namespace ya
 	{
 		HWND hWnd;
 		HDC  hdc;
+
 		HBITMAP backTexture;
 		HDC backBuffer;
+
 		UINT height;
 		UINT width;
 

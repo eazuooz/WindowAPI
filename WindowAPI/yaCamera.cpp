@@ -80,6 +80,11 @@ namespace ya
 
 	void Camera::Render(HDC hdc)
 	{
+		//여기서 조건 걸어줘야한다 알파블렌드 호출되서 
+
+		if (mEffectQueue.empty())
+			return;
+
 		BLENDFUNCTION tFunc = {};
 		tFunc.BlendOp = AC_SRC_OVER;
 		tFunc.BlendFlags = 0;

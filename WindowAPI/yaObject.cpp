@@ -8,30 +8,6 @@
 
 namespace ya
 {
-    /*void Object::Destory(Object* object)
-    {
-        if (object != nullptr)
-            object->mDead = true;
-    }*/
-
-    //void Object::Release()
-    //{
-    //    Scene* scene = SceneManager::GetPlayScene();
-    //    SceneObjects objects = scene->GetObjects();
-    //    
-    //    for (size_t y = 0; y < _COLLIDER_LAYER; y++)
-    //    {
-    //        for (LayerObjectsIter iter = objects[y].begin()
-    //            ; iter != objects[y].end(); iter++)
-    //        {
-    //            if ((*iter)->IsDead() == true)
-    //            {
-    //                iter = objects[y].erase(iter);
-    //            }
-    //        }
-    //    }
-    //}
-
     Object::Object(Object& other)
         : mComponents{ }
         , mPos{ other.mPos }
@@ -70,6 +46,14 @@ namespace ya
 
     void Object::Tick()
     {
+        //for (size_t i = 0; i < mComponents.size(); i++)
+        //{
+        //    if (nullptr == mComponents[i])
+        //        continue;
+
+        //    mComponents[i]->Tick();
+        //}
+
         for (Component* component : mComponents)
         {
             if (nullptr == component)

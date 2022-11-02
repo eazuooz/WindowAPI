@@ -133,6 +133,7 @@
     <ClInclude Include="yaAnimator.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="def.h" />
+    <ClInclude Include="yaTilePalette.h" />
     <ClInclude Include="yaCamera.h" />
     <ClInclude Include="yaCollider.h" />
     <ClInclude Include="yaCollisionManager.h" />
@@ -158,11 +159,14 @@
     <ClInclude Include="yaRigidbody.h" />
     <ClInclude Include="yaScene.h" />
     <ClInclude Include="yaSceneManager.h" />
+    <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTime.h" />
+    <ClInclude Include="yaToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />
+    <ClCompile Include="yaTilePalette.cpp" />
     <ClCompile Include="yaCamera.cpp" />
     <ClCompile Include="yaCollider.cpp" />
     <ClCompile Include="yaCollisionManager.cpp" />
@@ -184,7 +188,9 @@
     <ClCompile Include="yaRigidbody.cpp" />
     <ClCompile Include="yaScene.cpp" />
     <ClCompile Include="yaSceneManager.cpp" />
+    <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTime.cpp" />
+    <ClCompile Include="yaToolScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc" />

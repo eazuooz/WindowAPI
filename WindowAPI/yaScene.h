@@ -16,6 +16,9 @@ namespace ya
 		virtual void Render(HDC hdc);
 		virtual void Destroy();
 
+		virtual void Enter();
+		virtual void Exit();
+
 		void AddObject(Object* object, eColliderLayer type);
 		std::vector<std::vector<Object*>>& GetObjects()
 		{

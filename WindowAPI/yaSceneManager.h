@@ -13,7 +13,9 @@ namespace ya
 		static void Render(HDC hdc);
 		static void Destroy();
 
+		static void SceneChange(eSceneType type);
 		static inline Scene* GetPlayScene() { return mPlayScene; }
+		static eSceneType GetSecneType() { return mSceneType; }
 
 	private:
 		SceneManager() = delete;
@@ -22,5 +24,6 @@ namespace ya
 	private:
 		static Scene* mScenes[eSceneType::End];
 		static Scene* mPlayScene;
+		static eSceneType mSceneType;
 	};
 }

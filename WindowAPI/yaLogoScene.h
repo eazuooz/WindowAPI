@@ -7,5 +7,8 @@ namespace ya
 	{
 	public:
 		void Initialize() override;
+
+		virtual void Enter() override;
+		virtual void Exit() override;
 	};
 }
