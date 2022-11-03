@@ -14,11 +14,10 @@ namespace ya
 	{
 		mScenes[Logo] = new LogoScene();
 		SceneManager::SceneChange(Logo);
-		
 		mScenes[Logo]->Initialize();
 
 		mScenes[Tool] = new ToolScene();
-		SceneManager::SceneChange(Tool);
+		//SceneManager::SceneChange(Tool);
 		mScenes[Tool]->Initialize();
 	}
 

@@ -56,6 +56,9 @@
     <Filter Include="Object\Contents\Unit">
       <UniqueIdentifier>{ee4c92d5-34ea-4b03-9984-14f5346f2210}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{53222363-52e7-4875-ada4-92e3d3f71379}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -157,6 +160,10 @@
     <ClInclude Include="yaTilePalette.h">
       <Filter>Object\Contents\Map</Filter>
     </ClInclude>
+    <ClInclude Include="yaUIManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="yaUIBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -240,6 +247,10 @@
     <ClCompile Include="yaTilePalette.cpp">
       <Filter>Object\Contents\Map</Filter>
     </ClCompile>
+    <ClCompile Include="yaUIManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaUIBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

@@ -145,16 +145,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    if (!hWnd)
        return FALSE;
 
-   //ya::WindowData atlasWindowData;
-   //atlasWindowData.hWnd = hWnd;
-   //atlasWindowData.height = 900;
-   //atlasWindowData.width = 800;
-
-   //SetWindowPos(hWnd, nullptr, 0, 0, atlasWindowData.width, atlasWindowData.height, 0);
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-   //
-   
 
    return TRUE;
 }

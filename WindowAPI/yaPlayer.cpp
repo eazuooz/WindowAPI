@@ -14,6 +14,7 @@
 #include "yaRigidbody.h"
 
 #include "yaMissile.h"
+#include "yaUIManager.h"
 
 namespace ya
 {
@@ -91,6 +92,7 @@ namespace ya
 
 		if (KEY_PREESED(KEY_CODE::SPACE))
 		{
+			UIManager::Pop(eUIType::OPTION);
 			if (mShotTime >= 0.1f)
 			{
 				//Missile* misile = Instantiate<Missile>();

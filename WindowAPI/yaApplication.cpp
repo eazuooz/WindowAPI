@@ -6,6 +6,7 @@
 #include "yaCollisionManager.h"
 #include "yaCamera.h"
 #include "yaImage.h"
+#include "yaUIManager.h"
 
 namespace ya
 {
@@ -48,6 +49,7 @@ namespace ya
 		Time::Initialize();
 		InputManager::Initialize();
 		Camera::Initialize();
+		UIManager::Initialize();
 
 		return true;
 	}
@@ -84,10 +86,12 @@ namespace ya
 		Time::Tick();
 		InputManager::Tick();
 		Camera::Tick();
+		UIManager::Tick();
 
 		SceneManager::Tick();
 		CollisionManager::Tick();
 		
+
 		// Clear
 		HBRUSH hPrevBrush = (HBRUSH)SelectObject(mWindow.backBuffer, mBrushes[(UINT)eBrushColor::Gray]);
 		Rectangle(mWindow.backBuffer, -1, -1, mWindow.width + 1, mWindow.height + 1);
@@ -96,6 +100,7 @@ namespace ya
 		// 렌더링
 		SceneManager::Render(mWindow.backBuffer);
 		Time::Render(mWindow.backBuffer);
+		UIManager::Render(mWindow.backBuffer);
 		Camera::Render(mWindow.backBuffer);
 
 		// BitBlt 함수는 DC 간에 그림을 복사하는 함수입니다. 

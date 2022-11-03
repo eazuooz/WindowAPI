@@ -10,6 +10,8 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <map>
+#include <set>
+#include <stack>
 #include <queue>
 #include <functional>
 #include <memory>
@@ -18,13 +20,6 @@
 #include "def.h"
 
 #pragma comment(lib, "Msimg32.lib")
-//using std::vector;
-//using std::list;
-//using std::map;
-//using std::make_pair;
-//using std::string;
-//using std::wstring;
-
 
 namespace ya
 {
@@ -94,4 +89,5 @@ namespace ya
 			SelectObject(mHdc, mOldBrush);
 		}
 	};
+
 }

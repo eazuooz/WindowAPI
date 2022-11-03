@@ -13,6 +13,7 @@
 #include "yaCamera.h"
 
 #include "yaMissile.h"
+#include "yaUIManager.h"
 
 namespace ya
 {
@@ -36,6 +37,8 @@ namespace ya
 	void Monster::Tick()
 	{
 		Object::Tick();
+
+		UIManager::Pop(eUIType::OPTION);
 	}
 
 	void Monster::Render(HDC hdc)

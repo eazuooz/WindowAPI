@@ -6,6 +6,8 @@
 #include "yaApplication.h"
 #include "yaGameObject.h"
 
+#include "yaUIManager.h"
+
 namespace ya
 {
 	void LogoScene::Initialize()
@@ -26,6 +28,13 @@ namespace ya
 		pMonster->SetPos(Vector2(1920.0f / 2.0f, 1080.0f / 5.0f));
 
 		Camera::PushEffect(eCameraEffect::Fade_In, 2.0f);
+
+		
+		UIManager::Push(eUIType::HP);
+		UIManager::Push(eUIType::MP);
+		UIManager::Push(eUIType::SHOP);
+		UIManager::Push(eUIType::INVENTORY);
+		UIManager::Push(eUIType::OPTION);
 	}
 
 	void LogoScene::Enter()

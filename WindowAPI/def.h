@@ -68,6 +68,17 @@ enum class eColliderLayer
 	End = _COLLIDER_LAYER,
 };
 
+enum class eUIType
+{
+	HP,
+	MP,
+	SHOP,
+	INVENTORY,
+	OPTION,
+
+
+	End,
+};
 
 union ColliderID
 {
