@@ -164,5 +164,4 @@ namespace ya
 			mUIBases.push(uiBase);
 		}
 	}
-
 }

@@ -10,6 +10,7 @@ namespace ya
     struct Vector2
     {
         static Vector2 Zero;
+        static Vector2 One;
 
         float x;
         float y;
@@ -143,6 +144,7 @@ namespace ya
     typedef Vector2 Size;
 
     inline Vector2 Vector2::Zero = Vector2(0.0f, 0.0f);
+    inline Vector2 Vector2::One = Vector2(1.0f, 1.0f);
 }
 
 

@@ -7,7 +7,7 @@ namespace ya
 	{
 	public:
 		UIBase(eUIType type);
-		~UIBase();
+		virtual ~UIBase();
 
 		/// <summary>
 		/// UI가 로드 되었을때 불리는 초기화 함수
@@ -35,15 +35,21 @@ namespace ya
 		virtual void OnActive();
 		virtual void OnInActive();
 		virtual void OnTick();
+		virtual void OnRender(HDC hdc);
 		virtual void OnClear();
 
 		eUIType GetType() { return mType; }
 		bool GetIsFullScreen() { return mIsFullScreen; }
 		void SetIsFullScreen(bool enable) { mIsFullScreen = enable; }
+		void SetParent(UIBase* parent) { mParent = parent; }
 
 	private:
+		UIBase* mParent;
 		eUIType mType;
 		bool mIsFullScreen;
 		bool mEnabled;
+
+		Vector2 mPos;
+		Vector2 mSize;
 	};
 }

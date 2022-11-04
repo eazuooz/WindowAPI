@@ -46,14 +46,6 @@ namespace ya
 
     void Object::Tick()
     {
-        //for (size_t i = 0; i < mComponents.size(); i++)
-        //{
-        //    if (nullptr == mComponents[i])
-        //        continue;
-
-        //    mComponents[i]->Tick();
-        //}
-
         for (Component* component : mComponents)
         {
             if (nullptr == component)
