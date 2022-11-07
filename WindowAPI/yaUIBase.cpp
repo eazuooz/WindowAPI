@@ -1,5 +1,5 @@
 #include "yaUIBase.h"
-
+#include "yaInputManager.h"
 
 
 namespace ya
@@ -11,6 +11,7 @@ namespace ya
 		, mEnabled(false)
 		, mPos(Vector2::Zero)
 		, mSize(Vector2::One)
+		, mbMouseOn(false)
 	{
 
 	}
@@ -22,17 +23,31 @@ namespace ya
 	void UIBase::Initialize()
 	{
 		OnInit();
+		for (UIBase* child : mChilds)
+		{
+			child->OnInit();
+		}
 	}
 
 	void UIBase::Active()
 	{
 		mEnabled = true;
 		OnActive();
+
+		for (UIBase* child : mChilds)
+		{
+			child->Active();
+		}
 	}
 
 	void UIBase::InActive()
 	{
 		mEnabled = false;
+
+		for (UIBase* child : mChilds)
+		{
+			child->InActive();
+		}
 		OnInActive();
 	}
 
@@ -42,6 +57,18 @@ namespace ya
 			return;
 
 		OnTick();
+
+		mRenderPos = GetPos();
+		if (mParent)
+		{
+			mRenderPos += mParent->GetPos();
+		}
+
+		for (UIBase* child : mChilds)
+		{
+			if (child->mEnabled)
+				child->Tick();
+		}
 	}
 
 	void UIBase::Render(HDC hdc)
@@ -50,10 +77,19 @@ namespace ya
 			return;
 
 		OnRender(hdc);
+		for (UIBase* child : mChilds)
+		{
+			if (child->mEnabled)
+				child->Render(hdc);
+		}
 	}
 
 	void UIBase::UIClear()
 	{
+		for (UIBase* child : mChilds)
+		{
+			child->UIClear();
+		}
 		OnClear();
 	}
 
@@ -85,5 +121,11 @@ namespace ya
 	void UIBase::OnClear()
 	{
 
+	}
+
+	void UIBase::AddUIBase(UIBase* uiBase)
+	{
+		mChilds.push_back(uiBase);
+		uiBase->SetParent(this);
 	}
 }

@@ -3,9 +3,13 @@
 
 namespace ya
 {
+	class Image;
 	class HUD : public UIBase
 	{
 	public:
+		HUD(eUIType type);
+		~HUD();
+
 		virtual void OnInit() override;
 		virtual void OnActive() override;
 		virtual void OnInActive() override;
@@ -14,5 +18,6 @@ namespace ya
 		virtual void OnClear() override;
 
 	private:
+		Image* mImage;
 	};
 }

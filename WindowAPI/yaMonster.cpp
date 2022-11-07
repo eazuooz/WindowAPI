@@ -38,7 +38,7 @@ namespace ya
 	{
 		Object::Tick();
 
-		UIManager::Pop(eUIType::OPTION);
+		//UIManager::Pop(eUIType::OPTION);
 	}
 
 	void Monster::Render(HDC hdc)

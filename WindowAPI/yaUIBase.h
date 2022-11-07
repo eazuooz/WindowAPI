@@ -6,6 +6,20 @@ namespace ya
 	class UIBase : public Entity
 	{
 	public:
+		struct Event
+		{
+			void operator=(std::function<void()> func)
+			{
+				mEvent = std::move(func);
+			}
+			void operator()()
+			{
+				if (mEvent)
+					mEvent();
+			}
+			std::function<void()> mEvent;
+		};
+
 		UIBase(eUIType type);
 		virtual ~UIBase();
 
@@ -42,13 +56,23 @@ namespace ya
 		bool GetIsFullScreen() { return mIsFullScreen; }
 		void SetIsFullScreen(bool enable) { mIsFullScreen = enable; }
 		void SetParent(UIBase* parent) { mParent = parent; }
+		Vector2 GetPos() { return mPos; }
+		void SetPos(Vector2 pos) { mPos = pos; }
+		Vector2 GetSize() { return mSize; }
+		void SetSize(Vector2 size) { mSize = size; }
+
+		void AddUIBase(UIBase* uiBase);
+
+	protected:
+		std::vector<UIBase*> mChilds;
+		bool mbMouseOn;
+		UIBase* mParent;
+		Vector2 mRenderPos;
 
 	private:
-		UIBase* mParent;
 		eUIType mType;
 		bool mIsFullScreen;
 		bool mEnabled;
-
 		Vector2 mPos;
 		Vector2 mSize;
 	};

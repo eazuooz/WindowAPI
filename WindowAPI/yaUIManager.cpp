@@ -1,6 +1,7 @@
 #include "yaUIManager.h"
-
-
+#include "yaHUD.h"
+#include "yaButton.h"
+#include "yaPanel.h"
 
 namespace ya
 {
@@ -11,18 +12,29 @@ namespace ya
 
 	void UIManager::Initialize()
 	{
-		UIBase* p = new UIBase(eUIType::HP);
-		mUIs.insert(std::make_pair(eUIType::HP, p));
-		p = new UIBase(eUIType::MP);
-		mUIs.insert(std::make_pair(eUIType::MP, p));
-		p = new UIBase(eUIType::SHOP);
-		p->SetIsFullScreen(true);
-		mUIs.insert(std::make_pair(eUIType::SHOP, p));
-		p = new UIBase(eUIType::INVENTORY);
-		mUIs.insert(std::make_pair(eUIType::INVENTORY, p));
-		p = new UIBase(eUIType::OPTION);
-		p->SetIsFullScreen(true);
-		mUIs.insert(std::make_pair(eUIType::OPTION, p));
+		Panel* panel = new Panel(eUIType::INVENTORY);
+		mUIs.insert(std::make_pair(eUIType::INVENTORY, panel));
+
+		HUD* hud = new HUD(eUIType::HP);
+		//mUIs.insert(std::make_pair(eUIType::HP, hud));
+
+		Button* button = new Button(eUIType::OPTION);
+		//mUIs.insert(std::make_pair(eUIType::OPTION, button));
+
+		panel->AddUIBase(hud);
+		panel->AddUIBase(button);
+
+
+		//p = new UIBase(eUIType::MP);
+		//mUIs.insert(std::make_pair(eUIType::MP, p));
+		//p = new UIBase(eUIType::SHOP);
+		//p->SetIsFullScreen(true);
+		//mUIs.insert(std::make_pair(eUIType::SHOP, p));
+		//p = new UIBase(eUIType::INVENTORY);
+		//mUIs.insert(std::make_pair(eUIType::INVENTORY, p));
+		//p = new UIBase(eUIType::OPTION);
+		//p->SetIsFullScreen(true);
+		//mUIs.insert(std::make_pair(eUIType::OPTION, p));
 	}
 
 	void UIManager::OnLoad(eUIType type)

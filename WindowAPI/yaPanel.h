@@ -6,7 +6,7 @@ namespace ya
 	class Panel : public UIBase
 	{
 	public:
-		Panel();
+		Panel(eUIType type);
 		~Panel();
 
 		virtual void OnInit() override;
@@ -16,9 +16,7 @@ namespace ya
 		virtual void OnRender(HDC hdc) override;
 		virtual void OnClear() override;
 
-		void AddUIBase(UIBase* uiBase);
-
 	private:
-		std::vector<UIBase*> mChilds;
+		Vector2 mScreenPos;
 	};
 }

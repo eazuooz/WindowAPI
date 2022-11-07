@@ -1,4 +1,5 @@
 #include "yaPanel.h"
+#include "yaInputManager.h"
 
 namespace ya
 {
@@ -12,7 +13,7 @@ namespace ya
 
 	void Panel::OnInit()
 	{
-
+		SetPos(Vector2(400.0f, 400.0f));
 	}
 	
 	void Panel::OnActive()
@@ -22,15 +23,19 @@ namespace ya
 	
 	void Panel::OnInActive()
 	{
-
+		
 	}
 	
 	void Panel::OnTick()
 	{
-		for (UIBase* uiBase : mChilds)
-		{
-			uiBase->Tick();
-		}
+		Vector2 mousePos = InputManager::GetMousPosition();
+		Vector2 size = GetSize();
+		Vector2 pos = GetPos();
+
+		//for (UIBase* uiBase : mChilds)
+		//{
+		//	uiBase->Tick();
+		//}
 	}
 	
 	void Panel::OnRender(HDC hdc)
@@ -49,9 +54,5 @@ namespace ya
 		}
 	}
 	
-	void Panel::AddUIBase(UIBase* uiBase)
-	{
-		mChilds.push_back(uiBase);
-		uiBase->SetParent(this);
-	}
+
 }

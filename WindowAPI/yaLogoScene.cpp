@@ -7,6 +7,7 @@
 #include "yaGameObject.h"
 
 #include "yaUIManager.h"
+#include "yaHUD.h"
 
 namespace ya
 {
@@ -30,11 +31,15 @@ namespace ya
 		Camera::PushEffect(eCameraEffect::Fade_In, 2.0f);
 
 		
-		UIManager::Push(eUIType::HP);
-		UIManager::Push(eUIType::MP);
-		UIManager::Push(eUIType::SHOP);
 		UIManager::Push(eUIType::INVENTORY);
-		UIManager::Push(eUIType::OPTION);
+		//UIManager::Push(eUIType::HP);
+		//UIManager::Push(eUIType::OPTION);
+
+
+		//UIManager::Push(eUIType::MP);
+		//UIManager::Push(eUIType::SHOP);
+		//UIManager::Push(eUIType::INVENTORY);
+		//UIManager::Push(eUIType::OPTION);
 	}
 
 	void LogoScene::Enter()
