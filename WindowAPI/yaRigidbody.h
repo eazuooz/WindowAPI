@@ -17,20 +17,19 @@ namespace ya
 		void AddForce(Vector2 force);
 		void SetMass(float mass) { mMass = mass; }
 
-	private:
-		float mMass;
-		
-		float mFriction;
-		float mStaticFriction;
-		float mKineticFriction;
-		float mCoefficientFriction;
-		
-		float mNormalForce;
-
+	public:
 		Vector2 mForce;
-		Vector2 mAccelation;
 		Vector2 mVelocity;
+		Vector2 mLimitVelocity;
+
+		// ¸¶Âû
+		float mMass;
+		float mFriction;
+		Vector2 mAccelation;
+		
+		// Áß·Â
 		Vector2 mGravity;
+		bool mbGround;
 	};
 }
 

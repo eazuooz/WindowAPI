@@ -7,9 +7,12 @@ namespace ya
 	Rigidbody::Rigidbody()
 		: Component(eComponentType::Rigidbody)
 		, mMass(1.0f)
-		, mFriction(10.0f)
+		, mFriction(100.0f)
 	{
-		
+		mLimitVelocity.x = 200.f;
+		mLimitVelocity.y = 1000.f;
+		mbGround = false;
+		mGravity = Vector2(0.0f, 800.0f);
 	}
 
 	Rigidbody::~Rigidbody()
@@ -19,30 +22,6 @@ namespace ya
 
 	void Rigidbody::Tick()
 	{
-		// 중력이동
-		//Vector2 pos = GetOwner()->GetPos();
-
-		//if (pos.y >= 980.0f && mForce.y == 0.0f)
-		//{
-		//	return;
-		//}
-
-		//mGravity = Vector2(0.0f, 9.8f);
-		//mVelocity += (mGravity * mMass) * Time::DeltaTime();
-		//
-		//// F = M x A
-		//// A = F / M
-		//mAccelation = mForce / mMass;
-
-		//// 속도에 가속도를 더한다
-		//mVelocity += mAccelation * Time::DeltaTime();
-
-		//// 속도에 맞게 물체를 이동시킨다.
-		//pos += mVelocity;
-
-		//GetOwner()->SetPos(pos);
-		//mForce.clear();
-
 		//이동
 		// F = M x A
 		// A = F / M
@@ -51,10 +30,44 @@ namespace ya
 		// 속도에 가속도를 더한다
 		mVelocity += mAccelation * Time::DeltaTime();
 
+		if (mbGround)
+		{
+			// 땅위에 있을때
+			Vector2 gravity = mGravity;
+			gravity.Normalize();
+			float dot = ya::math::Dot(mVelocity, gravity);
+			mVelocity -= gravity * dot;
+		}
+		else
+		{
+			// 공중에 있을 때
+			mVelocity += mGravity * Time::DeltaTime();
+		} 
+
+
+		// 최대 속도 제한
+		Vector2 gravity = mGravity;
+		gravity.Normalize();
+		float dot = ya::math::Dot(mVelocity, gravity);
+		gravity = gravity * dot;
+
+		Vector2 sideVelocity = mVelocity - gravity;
+		if (mLimitVelocity.y < gravity.Length())
+		{
+			gravity.Normalize();
+			gravity *= mLimitVelocity.y;
+		}
+
+		if (mLimitVelocity.x < sideVelocity.Length())
+		{
+			sideVelocity.Normalize();
+			sideVelocity *= mLimitVelocity.x;
+		}
+		mVelocity = gravity + sideVelocity;
+
 		//마찰력 조건 ( 적용된 힘이 없고, 속도가 0 이 아닐 떄)
 		if ( !(mVelocity == Vector2::Zero) )
 		{
-			
 			// 속도에 반대 방향으로 마찰력을 적용
 			Vector2 friction = -mVelocity;
 			friction = friction.Normalize() * mFriction * mMass * Time::DeltaTime();

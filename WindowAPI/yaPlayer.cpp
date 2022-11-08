@@ -90,24 +90,29 @@ namespace ya
 			GetComponent<Animator>()->Play(L"Walk_Right", true);
 
 
-		if (KEY_PREESED(KEY_CODE::SPACE))
+		if (KEY_DOWN(KEY_CODE::SPACE))
 		{
-			UIManager::Pop(eUIType::OPTION);
-			if (mShotTime >= 0.1f)
-			{
-				//Missile* misile = Instantiate<Missile>();
+			Vector2 vV = GetComponent<Rigidbody>()->mVelocity;
+			vV.y = -500.f;
+			GetComponent<Rigidbody>()->mVelocity = (vV);
+			GetComponent<Rigidbody>()->mbGround = (false);
 
-				// ¹Ì»çÀÏ ½î±â
-				Scene* pCurScene = SceneManager::GetPlayScene();
-				Missile* pMissile = new Missile();
+			//UIManager::Pop(eUIType::OPTION);
+			//if (mShotTime >= 0.1f)
+			//{
+			//	//Missile* misile = Instantiate<Missile>();
 
-				pMissile->SetPos(GetPos());
-				pMissile->SetScale(Vector2(20.f, 20.f));
+			//	// ¹Ì»çÀÏ ½î±â
+			//	Scene* pCurScene = SceneManager::GetPlayScene();
+			//	Missile* pMissile = new Missile();
 
-				pCurScene->AddObject(pMissile, eColliderLayer::PlayerProjecttile);
+			//	pMissile->SetPos(GetPos());
+			//	pMissile->SetScale(Vector2(20.f, 20.f));
 
-				mShotTime = 0.f;
-			}
+			//	pCurScene->AddObject(pMissile, eColliderLayer::PlayerProjecttile);
+
+			//	mShotTime = 0.f;
+			//}
 		}
 		mShotTime += Time::DeltaTime();
 

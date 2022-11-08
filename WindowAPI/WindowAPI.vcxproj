@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="yaButton.h" />
+    <ClInclude Include="yaGround.h" />
     <ClInclude Include="yaHUD.h" />
     <ClInclude Include="yaAnimation.h" />
     <ClInclude Include="yaAnimator.h" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaButton.cpp" />
+    <ClCompile Include="yaGround.cpp" />
     <ClCompile Include="yaHUD.cpp" />
     <ClCompile Include="yaAnimation.cpp" />
     <ClCompile Include="yaAnimator.cpp" />

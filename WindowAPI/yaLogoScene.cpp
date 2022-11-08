@@ -9,6 +9,8 @@
 #include "yaUIManager.h"
 #include "yaHUD.h"
 
+#include "yaGround.h"
+
 namespace ya
 {
 	void LogoScene::Initialize()
@@ -18,20 +20,20 @@ namespace ya
 		player->SetScale(Vector2(50.f, 50.f));
 		AddObject(player, eColliderLayer::Player);
 		//gameObject::Instantiate<Player>(Vector2(500.f, 500.f), eColliderLayer::Player);
-		//gameObject::Instantiate<Player>(player, eColliderLayer::Player);
-
+		Ground* ground = gameObject::Instantiate<Ground>(eColliderLayer::Ground);
+		ground->SetPos(Vector2(700.0f, 700.0f));
 		// Monster »ý¼º
-		Monster* pMonster = new Monster;
-		pMonster->SetPos(Vector2(1920.0f / 2.0f - 100, 1080.0f / 5.0f));
-		pMonster->SetScale(Vector2(50.f, 50.f));
-		AddObject(pMonster, eColliderLayer::Monster);
-		gameObject::Instantiate<Monster>(pMonster, eColliderLayer::Monster);
-		pMonster->SetPos(Vector2(1920.0f / 2.0f, 1080.0f / 5.0f));
+		//Monster* pMonster = new Monster;
+		//pMonster->SetPos(Vector2(1920.0f / 2.0f - 100, 1080.0f / 5.0f));
+		//pMonster->SetScale(Vector2(50.f, 50.f));
+		//AddObject(pMonster, eColliderLayer::Monster);
+		//gameObject::Instantiate<Monster>(pMonster, eColliderLayer::Monster);
+		//pMonster->SetPos(Vector2(1920.0f / 2.0f, 1080.0f / 5.0f));
 
 		Camera::PushEffect(eCameraEffect::Fade_In, 2.0f);
 
 		
-		UIManager::Push(eUIType::INVENTORY);
+		//UIManager::Push(eUIType::INVENTORY);
 		//UIManager::Push(eUIType::HP);
 		//UIManager::Push(eUIType::OPTION);
 
@@ -50,6 +52,7 @@ namespace ya
 		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::PlayerProjecttile, true);
 		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::Monster, true);
 		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Monster, true);
+		CollisionManager::SetLayer(eColliderLayer::Player, eColliderLayer::Ground, true);
 	}
 
 	void LogoScene::Exit()

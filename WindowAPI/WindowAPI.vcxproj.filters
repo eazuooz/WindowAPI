@@ -163,7 +163,19 @@
     <ClInclude Include="yaUIManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="yaUIBase.h" />
+    <ClInclude Include="yaButton.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaHUD.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPanel.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaUIBase.h">
+      <Filter>Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGround.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -250,7 +262,19 @@
     <ClCompile Include="yaUIManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-    <ClCompile Include="yaUIBase.cpp" />
+    <ClCompile Include="yaButton.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaHUD.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPanel.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaUIBase.cpp">
+      <Filter>Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGround.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

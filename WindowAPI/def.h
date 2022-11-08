@@ -63,6 +63,7 @@ enum class eColliderLayer
 	PlayerProjecttile,
 	Monster,
 	MosterProjectile,
+	Ground,
 
 	Ui = _COLLIDER_LAYER - 1,
 	End = _COLLIDER_LAYER,
