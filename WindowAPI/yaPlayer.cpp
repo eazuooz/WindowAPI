@@ -18,11 +18,6 @@
 
 namespace ya
 {
-	void test()
-	{
-
-	}
-
 	Player::Player()
 		: mSpeed(100.0f)
 		, mShotTime(0.0f)
@@ -48,6 +43,17 @@ namespace ya
 		animator->mEndEvent = std::bind(&Player::AnimationEnd, this);
 
 		animator->Play(L"Walk_Down", true);
+
+
+		spriteSheet = Image::Create(L"SPRITETEST", 123 * 2, 124);
+		
+		//123 * 2 , 124
+		Image* pImage2
+			= Resources::Load<Image>(L"TestBLT", L"..\\Resources\\Images\\Fighter.bmp");
+
+		BitBlt(spriteSheet->GetHdc(), 0,0, 123, 124, pImage2->GetHdc(), 0,0, SRCCOPY);
+		BitBlt(spriteSheet->GetHdc(), 123, 0, 123, 124, pImage2->GetHdc(), 0, 0, SRCCOPY);
+
 	}
 
 	Player::~Player()
@@ -120,20 +126,20 @@ namespace ya
 		Object::Tick();
 	}
 
-	//void Player::Render(HDC hdc)
-	//{
-	//	Image* pImage 
-	//		= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
-	//	if (nullptr == pImage)
-	//		return;
+	void Player::Render(HDC hdc)
+	{
+		//Image* pImage 
+		//	= Resources::Load<Image>(L"PlayerImage", L"..\\Resources\\Images\\Fighter.bmp");
+		//if (nullptr == pImage)
+		//	return;
 
-	//	Vector2 vPos = GetPos();
-	//	vPos = Camera::CalulatePos(vPos);
-	//	TransparentBlt(hdc, (int)vPos.x - pImage->GetWidth() / 2
-	//		, (int)vPos.y - pImage->GetHeight() / 2
-	//		, pImage->GetWidth(), pImage->GetHeight()
-	//		, pImage->GetHdc(), 0, 0, pImage->GetWidth(), pImage->GetHeight(), RGB(255, 0, 255));
+		Vector2 vPos = GetPos();
+		vPos = Camera::CalulatePos(vPos);
+		TransparentBlt(hdc, (int)vPos.x - spriteSheet->GetWidth() / 2
+			, (int)vPos.y - spriteSheet->GetHeight() / 2
+			, spriteSheet->GetWidth(), spriteSheet->GetHeight()
+			, spriteSheet->GetHdc(), 0, 0, spriteSheet->GetWidth(), spriteSheet->GetHeight(), RGB(255, 0, 255));
 
-	//	Object::Render(hdc);
-	//}
+		Object::Render(hdc);
+	}
 }

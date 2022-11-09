@@ -32,6 +32,10 @@ namespace ya
 		void CreateAnimaiton(const std::wstring& name, Image* image
 			, Vector2 leftTop, Vector2 size, Vector2 offset
 			, float columnLegth, UINT spriteLength, float duration, bool bAffectedCamera = false);
+
+		void CreateAnimaitons(const std::wstring& path);
+
+
 		Animation* FindAnimation(const std::wstring& name);
 		void Play(const std::wstring& name, bool bLoop = false);
 

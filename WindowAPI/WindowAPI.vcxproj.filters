@@ -176,6 +176,12 @@
       <Filter>Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="yaGround.h" />
+    <ClInclude Include="yaSound.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSoundManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaApplication.cpp">
@@ -275,6 +281,12 @@
       <Filter>Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="yaGround.cpp" />
+    <ClCompile Include="yaSound.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSoundManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WindowAPI.rc">

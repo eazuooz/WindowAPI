@@ -1,6 +1,6 @@
 #include "yaAnimator.h"
 #include "yaAnimation.h"
-
+#include "yaImage.h"
 
 namespace ya
 {
@@ -70,6 +70,14 @@ namespace ya
 		animation->SetAnimator(this);
 
 		mAnimations.insert(std::make_pair(name, animation));
+	}
+
+	void Animator::CreateAnimaitons(const std::wstring& path)
+	{
+		Image* spriteSheet = Image::Create(L"SPRITETEST", 100, 100);
+
+		//BitBlt()
+
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)

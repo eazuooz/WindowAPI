@@ -7,6 +7,7 @@
 #include "yaCamera.h"
 #include "yaImage.h"
 #include "yaUIManager.h"
+#include "yaSoundManager.h"
 
 namespace ya
 {
@@ -50,6 +51,7 @@ namespace ya
 		InputManager::Initialize();
 		Camera::Initialize();
 		UIManager::Initialize();
+		SoundManager::Initialize();
 
 		return true;
 	}

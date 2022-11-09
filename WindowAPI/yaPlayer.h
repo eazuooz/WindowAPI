@@ -3,6 +3,7 @@
 
 namespace ya
 {
+	class Image;
 	class Player : public Object
 	{
 	public:
@@ -10,7 +11,7 @@ namespace ya
 		~Player();
 
 		virtual void Tick() override;
-		//virtual void Render(HDC hdc) override;
+		virtual void Render(HDC hdc) override;
 
 		void AnimationStart() {}
 		void AnimationComplete() {}
@@ -19,5 +20,6 @@ namespace ya
 	private:
 		float mSpeed;
 		float mShotTime;
+		Image* spriteSheet;
 	};
 }
