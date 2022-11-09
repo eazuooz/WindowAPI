@@ -71,7 +71,7 @@ namespace ya
 
 		mWidth = tBitInfo.bmWidth;
 		mHeight = tBitInfo.bmHeight;
-
+		mBitmap = tBitInfo.bmBits;
 
 		int iErr = GetLastError();
 
@@ -82,6 +82,26 @@ namespace ya
 		DeleteObject(hPrevBit);
 
 		return S_OK;
+	}
+
+	Pixel Image::GetPixel(int x, int y)
+	{
+		y = mHeight - (y + 1);
+
+		Pixel* pPixel = (Pixel*)mBitmap;
+		pPixel += (mWidth * y + x);
+		return *pPixel;
+	}
+
+	void Image::SetPixel(int x, int y, Pixel pixel)
+	{
+		// 비트맵 좌표는 좌측 상단이 0,0 이기떄문에 윈도우 좌표에서
+		// 사용하려면 y를 반대로 바꾸어주어햔다.
+		y = mHeight - (y + 1);
+
+		Pixel* pPixel = (Pixel*)mBitmap;
+		pPixel += (mWidth * y + x);
+		*pPixel = pixel;
 	}
 
 }

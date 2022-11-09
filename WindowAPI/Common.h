@@ -30,6 +30,20 @@
 
 namespace ya
 {
+	struct Pixel
+	{
+		BYTE R;
+		BYTE G;
+		BYTE B;
+		BYTE A;
+
+		Pixel(BYTE r, BYTE g, BYTE b, BYTE a)
+			: R(r), G(g), B(b), A(a)
+		{
+
+		}
+	};
+
 	struct WindowData
 	{
 		HWND hWnd;
