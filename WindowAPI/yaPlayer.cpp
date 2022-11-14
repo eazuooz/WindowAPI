@@ -38,21 +38,18 @@ namespace ya
 		animator->CreateAnimaiton(L"Walk_Left", pImage, Vector2(0.f, 650.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
 		animator->CreateAnimaiton(L"Walk_Right", pImage, Vector2(0.f, 910.f), Vector2(120.f, 130.f), Vector2(0.f, -30.f), 120.f, 10, 0.1f);
 
-		animator->mStartEvent = std::bind(&Player::AnimationStart, this);
-		animator->mCompleteEvent = std::bind(&Player::AnimationComplete, this);
-		animator->mEndEvent = std::bind(&Player::AnimationEnd, this);
-
+		animator->FindEvents(L"Walk_Up")->mCompleteEvent = std::bind(&Player::AnimationStart, this);
 		animator->Play(L"Walk_Down", true);
 
 
 		spriteSheet = Image::Create(L"SPRITETEST", 123 * 2, 124);
 		
 		//123 * 2 , 124
-		Image* pImage2
-			= Resources::Load<Image>(L"TestBLT", L"..\\Resources\\Images\\Fighter.bmp");
+		//Image* pImage2
+		//	= Resources::Load<Image>(L"TestBLT", L"..\\Resources\\Images\\Fighter.bmp");
 
-		BitBlt(spriteSheet->GetHdc(), 0,0, 123, 124, pImage2->GetHdc(), 0,0, SRCCOPY);
-		BitBlt(spriteSheet->GetHdc(), 123, 0, 123, 124, pImage2->GetHdc(), 0, 0, SRCCOPY);
+		//BitBlt(spriteSheet->GetHdc(), 0,0, 123, 124, pImage2->GetHdc(), 0,0, SRCCOPY);
+		//BitBlt(spriteSheet->GetHdc(), 123, 0, 123, 124, pImage2->GetHdc(), 0, 0, SRCCOPY);
 
 	}
 
@@ -133,12 +130,12 @@ namespace ya
 		//if (nullptr == pImage)
 		//	return;
 
-		Vector2 vPos = GetPos();
-		vPos = Camera::CalulatePos(vPos);
-		TransparentBlt(hdc, (int)vPos.x - spriteSheet->GetWidth() / 2
-			, (int)vPos.y - spriteSheet->GetHeight() / 2
-			, spriteSheet->GetWidth(), spriteSheet->GetHeight()
-			, spriteSheet->GetHdc(), 0, 0, spriteSheet->GetWidth(), spriteSheet->GetHeight(), RGB(255, 0, 255));
+		//Vector2 vPos = GetPos();
+		//vPos = Camera::CalulatePos(vPos);
+		//TransparentBlt(hdc, (int)vPos.x - spriteSheet->GetWidth() / 2
+		//	, (int)vPos.y - spriteSheet->GetHeight() / 2
+		//	, spriteSheet->GetWidth(), spriteSheet->GetHeight()
+		//	, spriteSheet->GetHdc(), 0, 0, spriteSheet->GetWidth(), spriteSheet->GetHeight(), RGB(255, 0, 255));
 
 		Object::Render(hdc);
 	}

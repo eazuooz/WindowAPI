@@ -23,11 +23,11 @@ namespace ya
 		Ground* ground = gameObject::Instantiate<Ground>(eColliderLayer::Ground);
 		ground->SetPos(Vector2(700.0f, 700.0f));
 		// Monster »ý¼º
-		//Monster* pMonster = new Monster;
-		//pMonster->SetPos(Vector2(1920.0f / 2.0f - 100, 1080.0f / 5.0f));
-		//pMonster->SetScale(Vector2(50.f, 50.f));
-		//AddObject(pMonster, eColliderLayer::Monster);
-		//gameObject::Instantiate<Monster>(pMonster, eColliderLayer::Monster);
+		Monster* pMonster = new Monster;
+		pMonster->SetPos(Vector2(1920.0f / 2.0f - 100, 1080.0f / 5.0f));
+		pMonster->SetScale(Vector2(50.f, 50.f));
+		AddObject(pMonster, eColliderLayer::Monster);
+		//gameObject::Instantiate<Monster>(Vector2(500.f, 500.f), eColliderLayer::Monster);
 		//pMonster->SetPos(Vector2(1920.0f / 2.0f, 1080.0f / 5.0f));
 
 		Camera::PushEffect(eCameraEffect::Fade_In, 2.0f);

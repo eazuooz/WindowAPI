@@ -1,6 +1,6 @@
-﻿//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++에서 생성한 포함 파일입니다.
-// WindowAPI.rc에서 사용되고 있습니다.
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by WindowAPI.rc
 //
 #define IDC_MYICON                      2
 #define IDD_WINDOWAPI_DIALOG            102
@@ -15,6 +15,7 @@
 #define IDD_TILECREATE                  129
 #define IDC_EDIT1                       1000
 #define IDC_EDIT2                       1001
+#define IDC_COMBO1                      1002
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -31,7 +32,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        130
 #define _APS_NEXT_COMMAND_VALUE         32782
-#define _APS_NEXT_CONTROL_VALUE         1002
+#define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

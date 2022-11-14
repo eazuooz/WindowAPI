@@ -15,6 +15,7 @@
 #include <queue>
 #include <functional>
 #include <memory>
+#include <filesystem>
 
 #include "yaMath.h"
 #include "def.h"
